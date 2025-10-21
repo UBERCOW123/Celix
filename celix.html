@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celix - Software Development</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+
+        /* --- New Animated Backdrop --- */
+        .backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #1a001a;
+            /* The filter creates the soft, blended look */
+            filter: blur(3vw) contrast(200%) saturate(150%) brightness(0.6);
+            z-index: -1;
+        }
+
+        .backdrop .shape {
+            position: absolute;
+            aspect-ratio: 1/1;
+            border-radius: 100%;
+        }
+
+        .backdrop .shape.one {
+            width: 40svw;
+            background: rgba(153, 255, 204, 0.5);
+            animation: shape-one 12s ease-in-out infinite alternate;
+            animation-delay: -2s;
+        }
+
+        .backdrop .shape.two {
+            width: 25lvw;
+            background: rgba(255, 221, 153, 0.5);
+            animation: shape-two 8s ease-in-out infinite alternate;
+            animation-delay: -1s;
+        }
+
+        .backdrop .shape.three {
+            width: 32svw;
+            background: rgba(153, 238, 255, 0.5);
+            animation: shape-three 10s ease-in-out infinite alternate;
+            animation-delay: -3.5s;
+        }
+        
+        .backdrop .shape.four {
+            width: 37svw;
+            background: rgba(255, 153, 179, 0.5);
+            animation: shape-five 11s ease-in-out infinite alternate;
+            animation-delay: -0.4s;
+        }
+        
+        .backdrop .shape.five {
+            width: 24svw;
+            background: rgba(153, 247, 255, 0.5);
+            animation: shape-six 14s ease-in-out infinite alternate;
+            animation-delay: -7.4s;
+        }
+
+        /* Sticky container for the main title scroll effect */
+        .title-container {
+            height: 200vh; /* Provides scroll space to animate the title */
+        }
+        
+        .sticky-title {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* The main content area that scrolls over the title */
+        .content-area {
+            position: relative;
+            z-index: 10;
+            /* Semi-transparent background with a blur to see the animation behind */
+            background-color: rgba(5, 5, 5, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        
+        /* New clean button style */
+        .clean-button {
+            background-color: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .clean-button:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        /* Placeholder content card styling */
+        .placeholder-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            min-height: 300px;
+        }
+        
+        /* --- Keyframe Animations for Shapes --- */
+        @keyframes shape-one {
+            from { transform: rotate(90deg) translate(45lvh, 5lvw); }
+            to { transform: rotate(120deg) translate(-20lvh, 10lvw); }
+        }
+
+        @keyframes shape-two {
+            from { transform: rotate(200deg) translate(-35lvh, 12lvw); }
+            to { transform: rotate(280deg) translate(-25lvh, -5lvw); }
+        }
+
+        @keyframes shape-three {
+            from { transform: rotate(-165deg) translate(24lvh, -32lvw); }
+            to { transform: rotate(-100deg) translate(10lvh, -20lvw); }
+        }
+        
+        @keyframes shape-five {
+            from { transform: rotate(-55deg) translate(30lvh, 26lvw); }
+            to { transform: rotate(-90deg) translate(40lvh, 10lvw); }
+        }
+
+        @keyframes shape-six {
+            from { transform: rotate(120deg) translate(-40lvh, 46lvw); }
+            to { transform: rotate(95deg) translate(52lvh, -30lvw); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CSS Animated Backdrop -->
+    <div class="backdrop">
+        <div class="shape one"></div>
+        <div class="shape two"></div>
+        <div class="shape three"></div>
+        <div class="shape four"></div>
+        <div class="shape five"></div>
+    </div>
+
+
+    <!-- Header Navigation -->
+    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300" id="header">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- The title in the nav is initially hidden -->
+            <h1 id="nav-title" class="text-3xl font-bold text-white tracking-wider opacity-0 transition-opacity duration-500">Celix</h1>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#mission" class="text-slate-300 hover:text-white transition-colors duration-300">Mission</a>
+                <a href="#products" class="text-slate-300 hover:text-white transition-colors duration-300">Products</a>
+                <a href="#contact" class="text-white px-5 py-2 rounded-lg font-semibold clean-button">Contact</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black/50 backdrop-blur-lg">
+             <a href="#mission" class="block text-slate-300 hover:text-white transition-colors duration-300 px-6 py-3">Mission</a>
+             <a href="#products" class="block text-slate-300 hover:text-white transition-colors duration-300 px-6 py-3">Products</a>
+             <a href="#contact" class="block text-white px-6 py-3 rounded-lg font-semibold clean-button mx-4 my-2 text-center">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Section for the large scrolling title -->
+        <div class="title-container">
+            <div class="sticky-title">
+                <h1 id="main-title" class="text-8xl md:text-[18rem] font-black text-white text-center leading-none">
+                    Celix
+                </h1>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="content-area pt-20 md:pt-32 pb-32 rounded-t-3xl">
+            <div class="container mx-auto px-6">
+            
+                <!-- Mission Section -->
+                <section id="mission" class="py-16">
+                    <div class="max-w-4xl mx-auto text-center">
+                        <h2 class="text-4xl md:text-5xl font-bold text-white mb-8">Our Mission</h2>
+                        <div class="placeholder-card rounded-2xl p-8 flex items-center justify-center">
+                             <p class="text-slate-400 text-lg">Mission statement content will go here.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Products Section -->
+                <section id="products" class="py-16">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Our Products</h2>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Product Card 1 -->
+                        <div class="placeholder-card rounded-2xl p-8 flex items-center justify-center">
+                             <p class="text-slate-400 text-lg">Product One Description</p>
+                        </div>
+
+                        <!-- Product Card 2 -->
+                        <div class="placeholder-card rounded-2xl p-8 flex items-center justify-center">
+                           <p class="text-slate-400 text-lg">Product Two Description</p>
+                        </div>
+                    </div>
+                </section>
+                
+                 <!-- Contact Section -->
+                <section id="contact" class="py-16">
+                    <div class="text-center">
+                        <h2 class="text-4xl md:text-5xl font-bold text-white mb-8">Get In Touch</h2>
+                         <div class="placeholder-card rounded-2xl p-8 flex items-center justify-center">
+                           <p class="text-slate-400 text-lg">Contact form or information.</p>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-[#050505]">
+        <div class="container mx-auto px-6 py-8 text-center text-slate-500">
+            <p>&copy; 2024 Celix. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Main script for all animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const mainTitle = document.getElementById('main-title');
+            const navTitle = document.getElementById('nav-title');
+            const header = document.getElementById('header');
+
+            // --- Title Scroll Animation ---
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY;
+                const vh = window.innerHeight;
+
+                if (scrollY < vh) {
+                    // We are in the scroll area for the title
+                    const scale = Math.max(0.1, 1 - (scrollY / vh) * 0.9); // Scale down to 10%
+                    const opacity = Math.max(0, 1 - (scrollY / vh) * 1.5); // Fade out faster
+                    mainTitle.style.transform = `scale(${scale})`;
+                    mainTitle.style.opacity = opacity;
+                    navTitle.style.opacity = 0;
+                    header.style.backgroundColor = 'transparent';
+                    header.style.backdropFilter = 'none';
+
+                } else {
+                    // Scrolled past the title area
+                    mainTitle.style.transform = 'scale(0.1)';
+                    mainTitle.style.opacity = 0;
+                    navTitle.style.opacity = 1;
+                    header.style.backgroundColor = 'rgba(5, 5, 5, 0.7)';
+                    header.style.backdropFilter = 'blur(10px)';
+                }
+            });
+
+            // --- Mobile Menu Toggle ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
+
