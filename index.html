@@ -118,6 +118,35 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             min-height: 300px;
         }
+
+        /* --- Styling for the new contact form --- */
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #9ca3af; /* text-gray-400 */
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem; /* rounded-lg */
+            padding: 0.75rem 1rem;
+            color: #e2e8f0;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: rgba(129, 140, 248, 0.7); /* indigo-400 */
+            box-shadow: 0 0 0 2px rgba(129, 140, 248, 0.3);
+        }
         
         /* --- Keyframe Animations for Shapes --- */
         @keyframes shape-one {
@@ -235,10 +264,52 @@
                 
                  <!-- Contact Section -->
                 <section id="contact" class="py-16">
-                    <div class="text-center">
-                        <h2 class="text-4xl md:text-5xl font-bold text-white mb-8">Get In Touch</h2>
-                         <div class="placeholder-card rounded-2xl p-8 flex items-center justify-center">
-                           <p class="text-slate-400 text-lg">Contact form or information.</p>
+                    <div class="max-w-4xl mx-auto text-center">
+                        <h2 class="text-4xl md:text-5xl font-bold text-white mb-12">Get In Touch</h2>
+                        <div class="grid md:grid-cols-2 gap-12 items-start">
+                            <!-- Contact Info -->
+                            <div class="text-left">
+                                <h3 class="text-2xl font-bold text-white mb-4">Contact Information</h3>
+                                <p class="text-slate-400 mb-6">
+                                    Have a project in mind or just want to say hello? Reach out to us directly or use the form.
+                                </p>
+                                <div class="space-y-4">
+                                    <div class="flex items-center space-x-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-400" viewBox="0 0 20 20" fill="currentColor">
+                                          <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                                          <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                                        </svg>
+                                        <a href="mailto:GeorgeClark@CelixLtd.onmicrosoft.com" class="text-slate-300 hover:text-white transition-colors">GeorgeClark@CelixLtrd.onmicrosoft.com</a>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-400" viewBox="0 0 20 20" fill="currentColor">
+                                          <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.518.759a11.037 11.037 0 006.158 6.158l.759-1.518a1 1 0 011.06-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                                        </svg>
+                                        <span class="text-slate-300">07387 426517</span>
+                                    </div>
+                                </div>
+                            </div>
+                
+                            <!-- Contact Form -->
+                            <div class="placeholder-card rounded-2xl p-8">
+                                <form id="contactForm">
+                                    <input type="hidden" name="access_key" value="6d5a403b-d26f-4409-9ef5-2a6310034a92">
+                                    <div class="form-group">
+                                        <label for="name">Your Name</label>
+                                        <input type="text" id="name" name="name" required placeholder="e.g., Jane Doe">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Your Email</label>
+                                        <input type="email" id="email" name="email" required placeholder="e.g., jane.doe@example.com">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message">Message</label>
+                                        <textarea id="message" name="message" rows="4" required placeholder="Your message here..."></textarea>
+                                    </div>
+                                    <div id="form-status" class="text-center mb-4 h-5 transition-all"></div>
+                                    <button type="submit" class="w-full text-white px-5 py-3 rounded-lg font-semibold clean-button">Send Message</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -292,10 +363,73 @@
             mobileMenuButton.addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
             });
+
+            /**
+             * Sets up the contact form submission using Web3Forms.
+             * Handles form data, sends it to the API endpoint, and displays status messages.
+             */
+            function initContactForm() {
+                const contactForm = document.getElementById('contactForm');
+                const formStatus = document.getElementById('form-status');
+                if (!contactForm || !formStatus) {
+                    console.warn("Contact form or status element not found. Skipping form setup.");
+                    return;
+                }
+
+                contactForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+
+                    const submitButton = contactForm.querySelector('button[type="submit"]');
+                    const originalButtonText = submitButton.textContent;
+                    submitButton.textContent = 'Sending...';
+                    submitButton.disabled = true;
+                    formStatus.textContent = '';
+                    formStatus.style.color = 'inherit';
+
+                    const formData = new FormData(contactForm);
+                    const formObject = {};
+                    formData.forEach((value, key) => { formObject[key] = value });
+                    const jsonRequestBody = JSON.stringify(formObject);
+
+                    const endpointURL = 'https://api.web3forms.com/submit';
+
+                    fetch(endpointURL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: jsonRequestBody
+                    })
+                    .then(async (response) => {
+                        let jsonResponse = await response.json();
+                        if (response.ok && jsonResponse.success) {
+                            formStatus.textContent = jsonResponse.message || "Message sent successfully!";
+                            formStatus.style.color = '#4ade80'; // text-green-400
+                            contactForm.reset();
+                            setTimeout(() => { formStatus.textContent = ''; }, 5000);
+                        } else {
+                            console.error('Web3Forms submission error:', jsonResponse);
+                            formStatus.textContent = jsonResponse.message || "An error occurred sending the message.";
+                            formStatus.style.color = '#f87171'; // text-red-400
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Form submission fetch error:', error);
+                        formStatus.textContent = 'Could not send message. Please check your network connection.';
+                        formStatus.style.color = '#f87171';
+                    })
+                    .finally(() => {
+                        submitButton.textContent = originalButtonText;
+                        submitButton.disabled = false;
+                    });
+                });
+            }
+
+            // Initialize the contact form logic
+            initContactForm();
         });
     </script>
 </body>
 </html>
-
-
 
