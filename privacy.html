@@ -116,61 +116,64 @@
             <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 text-center">Privacy Policy</h1>
             <p class="text-center text-slate-400">Last updated: [Date]</p>
 
-            <!-- Legal Disclaimer -->
-            <div class="my-8 p-4 rounded-lg bg-yellow-900/20 border border-yellow-500/30 text-yellow-200">
-                <p class="font-bold">Important Legal Notice:</p>
-                <p class="text-sm">This is a general template and not legal advice. You must consult with a qualified legal professional to ensure this policy is complete and compliant with all applicable laws for your business and jurisdiction (e.g., GDPR, CCPA).</p>
-            </div>
+            <p>Welcome to Celix. We respect your privacy and are committed to protecting your personal data. This privacy policy explains what our "Email Insights" browser extension (the "Service") does and does not do with your data.</p>
+            <p>Our core privacy promise is simple: **We do not have a server. We do not collect, store, or transmit your personal data.** All analysis happens locally on your computer.</p>
 
-            <p>Welcome to Celix. We respect your privacy and are committed to protecting your personal data. This privacy policy will inform you as to how we look after your personal data when you visit our website (regardless of where you visit it from) and tell you about your privacy rights and how the law protects you.</p>
-
-            <h2>1. Information We Collect</h2>
-            <p>We may collect, use, store, and transfer different kinds of personal data about you which we have grouped together as follows:</p>
+            <h2>1. What Information the Service Accesses</h2>
+            <p>To function, the Service requires you to grant it permission to access your Microsoft account. This access is strictly limited and used as follows:</p>
             <ul>
-                <li><strong>Identity Data:</strong> includes first name, last name, or similar identifier.</li>
-                <li><strong>Contact Data:</strong> includes email address and telephone numbers.</li>
-                <li><strong>Technical Data:</strong> includes internet protocol (IP) address, browser type and version, time zone setting and location, browser plug-in types and versions, operating system and platform, and other technology on the devices you use to access this website.</li>
-                <li><strong>Usage Data:</strong> includes information about how you use our website and services.</li>
-                <li><strong>Marketing and Communications Data:</strong> includes your preferences in receiving marketing from us and our third parties and your communication preferences.</li>
-            </ul>
-            <p>We collect this data in the following ways:</p>
-            <ul>
-                <li><strong>Direct interactions:</strong> You may give us your Identity and Contact Data by filling in forms or by corresponding with us by email. This includes personal data you provide when you use our contact form.</li>
-                <li><strong>Automated technologies or interactions:</strong> As you interact with our website, we may automatically collect Technical Data about your equipment, browsing actions, and patterns. (e.g., via Google Analytics).</li>
+                <li><strong>Microsoft User ID:</strong> We access your Microsoft User ID (`User.Read` permission) for the sole purpose of managing your analysis credits (tries) and premium status, which are stored locally on your machine. We do not transmit this ID to any server.</li>
+                <li><strong>Email Metadata:</strong> We use the `Mail.ReadBasic` permission to read *metadata* from your Inbox and Sent Items. This includes:
+                    <ul>
+                        <li>Sender and recipient email addresses</li>
+                        <li>Email timestamps (date and time)</li>
+                        <li>Email subjects (used *only* for filtering, e.g., to remove "Out of Office" replies, and then immediately discarded)</li>
+                        <li>Conversation IDs (to group threads)</li>
+                    </ul>
+                </li>
+                <li><strong>WE DO NOT:</strong>
+                    <ul>
+                        <li>Read or store the **body content** of any of your emails.</li>
+                        <li>Read or store your email attachments.</li>
+                        <li>Store your email subjects.</li>
+                    </ul>
+                </li>
             </ul>
 
             <h2>2. How We Use Your Information</h2>
-            <p>We will only use your personal data when the law allows us to. Most commonly, we will use your personal data in the following circumstances:</p>
+            <p>The Service uses the email metadata it accesses for one purpose: to generate statistics *locally on your computer*.</p>
             <ul>
-                <li>To respond to your inquiries or requests submitted via our contact form.</li>
-                <li>To manage our relationship with you.</li>
-                <li>To use data analytics to improve our website, services, marketing, customer relationships, and experiences.</li>
-                <li>To comply with a legal or regulatory obligation.</li>
+                <li>The Service processes this metadata to calculate metrics like sent counts, received counts, response times, and reply rates for your contacts.</li>
+                <li>These calculated statistics (the "Email Stats") are the *only* data saved by the extension.</li>
             </ul>
 
-            <h2>3. Information Sharing and Disclosure</h2>
-            <p>We do not sell, rent, or trade your personal information with third parties for their marketing purposes.</p>
-            <p>We may share your data with third-party service providers who perform services on our behalf, such as:</p>
+            <h2>3. Information Storage and Sharing</h2>
+            <h3>Storage</h3>
+            <p>All data processed or generated by the Service is stored in your browser's local storage (`chrome.storage.local`). This data includes:</p>
             <ul>
-                <li>Email form processors (e.g., Web3Forms) to handle your contact submissions.</li>
-                <li>Website analytics providers (e.g., Google Analytics).</li>
+                <li>Your calculated "Email Stats".</li>
+                <li>Your analysis credit count and premium status (tied to your User ID).</li>
+                <li>Your settings for the extension.</li>
             </ul>
-            <p>We may also disclose your personal data if required by law or in response to valid requests by public authorities.</p>
-
-            <h2>4. Data Security</h2>
-            <p>We have put in place appropriate security measures to prevent your personal data from being accidentally lost, used, or accessed in an unauthorized way, altered, or disclosed. However, no method of transmission over the Internet or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your personal data, we cannot guarantee its absolute security.</p>
-
-            <h2>5. Your Legal Rights</h2>
-            <p>Depending on your location and jurisdiction (e.g., GDPR in Europe), you may have rights including:</p>
+            <p>This data **never leaves your computer**. We (Celix) do not have access to it.</p>
+            <h3>Sharing</h3>
+            <p>We do not sell, rent, or share any of your personal data (including your User ID or email stats) with any third parties.</p>
+            <p>The only data transmissions that occur are:</p>
             <ul>
-                <li>The right to access, update, or delete the information we have on you.</li>
-                <li>The right of rectification.</li>
-                <li>The right to object.</li>
-                <li>The right of restriction.</li>
-                <li>The right to data portability.</li>
-                <li>The right to withdraw consent.</li>
+                <li>Directly between your browser and Microsoft's Graph API to fetch your email metadata. This is a standard part of how Microsoft 365 works.</li>
+                <li>If you choose to purchase, you will be directed to a third-party payment processor (e.g., Stripe). We do not handle or see your payment information.</li>
             </ul>
-            <p>If you wish to exercise any of these rights, please contact us.</p>
+
+            <h2>4. Your Control and Data Deletion</h2>
+            <p>You have full control over the data stored by this extension. You can go to the extension's "Options" page and click the **"Clear All Stored Data"** button at any time. This will permanently delete all stored "Email Stats," credit information, and settings from your browser.</p>
+
+            <h2>5. Disclaimer of Warranties & Use At Your Own Risk</h2>
+            <p>This Service is provided "AS IS" and "AS AVAILABLE" without any warranty of any kind, express or implied.</p>
+            <ul>
+                <li><strong>No Guarantees:</strong> We do not guarantee that the Service will be 100% accurate, uninterrupted, or error-free. The analysis of communication patterns (such as "response time" or "ignored" emails) is a best-effort calculation and may not be perfectly accurate due to the complexity of email conversations.</li>
+                <li><strong>Use At Your Own Risk:</strong> Your use of the Service is at your sole risk. The data and statistics provided are for informational purposes only.</li>
+                <li><strong>No Liability:</strong> You are solely responsible for interpreting the data provided by this tool and for any actions you take or decisions you make based on it. In no event shall Celix be liable for any direct, indirect, incidental, special, or consequential damages (including, but not limited to, damages for loss of profits, goodwill, or data) resulting from the use of or inability to use the Service.</li>
+            </ul>
 
             <h2>6. Changes to This Privacy Policy</h2>
             <p>We may update this privacy policy from time to time. We will notify you of any changes by posting the new privacy policy on this page. You are advised to review this privacy policy periodically for any changes.</p>
@@ -206,3 +209,4 @@
     </script>
 </body>
 </html>
+
