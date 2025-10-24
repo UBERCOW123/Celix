@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Celix - Software Development</title>
+    <title>Email Insights - Celix</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
@@ -14,7 +14,7 @@
             overflow-x: hidden;
         }
 
-        /* --- New Animated Backdrop --- */
+        /* --- Animated Backdrop (Copied from index.html) --- */
         .backdrop {
             position: fixed;
             top: 0;
@@ -22,7 +22,6 @@
             width: 100vw;
             height: 100vh;
             background: #1a001a;
-            /* The filter creates the soft, blended look */
             filter: blur(3vw) contrast(200%) saturate(150%) brightness(0.6);
             z-index: -1;
         }
@@ -75,32 +74,7 @@
             animation-delay: -5s;
         }
 
-        /* Sticky container for the main title scroll effect */
-        .title-container {
-            height: 200vh; /* Provides scroll space to animate the title */
-        }
-        
-        .sticky-title {
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* The main content area that scrolls over the title */
-        .content-area {
-            position: relative;
-            z-index: 10;
-            /* Semi-transparent background with a blur to see the animation behind */
-            background-color: rgba(5, 5, 5, 0.4);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-        
-        /* New clean button style */
+        /* --- Component Styles (Copied from index.html) --- */
         .clean-button {
             background-color: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.15);
@@ -112,70 +86,34 @@
             transform: translateY(-2px);
         }
         
-        /* Placeholder content card styling */
         .placeholder-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            min-height: 300px;
         }
 
-        /* --- Styling for the new contact form --- */
-        .form-group {
-            margin-bottom: 1.5rem;
-            text-align: left;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: #9ca3af; /* text-gray-400 */
-        }
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 0.5rem; /* rounded-lg */
-            padding: 0.75rem 1rem;
-            color: #e2e8f0;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: rgba(129, 140, 248, 0.7); /* indigo-400 */
-            box-shadow: 0 0 0 2px rgba(129, 140, 248, 0.3);
-        }
-        
-        /* --- Keyframe Animations for Shapes --- */
+        /* --- Keyframe Animations (Copied from index.html) --- */
         @keyframes shape-one {
             from { transform: rotate(90deg) translate(45lvh, 5lvw); }
             50% { transform: rotate(100deg) translate(-10lvh, -15lvw); }
             to { transform: rotate(120deg) translate(-20lvh, 10lvw); }
         }
-
         @keyframes shape-two {
             from { transform: rotate(200deg) translate(-35lvh, 12lvw); }
             to { transform: rotate(280deg) translate(-25lvh, -5lvw); }
         }
-
         @keyframes shape-three {
             from { transform: rotate(-165deg) translate(24lvh, -32lvw); }
             50% { transform: rotate(-140deg) translate(5lvh, 10lvw); }
             to { transform: rotate(-100deg) translate(10lvh, -20lvw); }
         }
-        
         @keyframes shape-four {
             from { transform: rotate(-55deg) translate(30lvh, 26lvw); }
             to { transform: rotate(-90deg) translate(40lvh, 10lvw); }
         }
-
         @keyframes shape-five {
             from { transform: rotate(120deg) translate(-40lvh, 46lvw); }
             to { transform: rotate(95deg) translate(52lvh, -30lvw); }
         }
-
         @keyframes shape-six {
             from { transform: rotate(25deg) translate(-16lvh, -19lvw); }
             to { transform: rotate(-20deg) translate(20lvh, 10lvw); }
@@ -194,16 +132,17 @@
         <div class="shape six"></div>
     </div>
 
-
-    <!-- Header Navigation -->
-    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300" id="header">
+    <!-- Header Navigation (Modified for this page) -->
+    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-black/70 backdrop-blur-lg">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- The title in the nav is initially hidden -->
-            <h1 id="nav-title" class="text-3xl font-bold text-white tracking-wider opacity-0 transition-opacity duration-500">Celix</h1>
+            <!-- Logo links back to home -->
+            <a href="index.html" class="text-3xl font-bold text-white tracking-wider transition-opacity duration-500">Celix</a>
+            
             <div class="hidden md:flex items-center space-x-8">
-                <a href="#mission" class="text-slate-300 hover:text-white transition-colors duration-300">Mission</a>
-                <a href="#products" class="text-slate-300 hover:text-white transition-colors duration-3Un00">Products</a>
-                <a href="#contact" class="text-white px-5 py-2 rounded-lg font-semibold clean-button">Contact</a>
+                <!-- Links point back to index.html sections -->
+                <a href="index.html#mission" class="text-slate-300 hover:text-white transition-colors duration-300">Mission</a>
+                <a href="index.html#products" class="text-slate-300 hover:text-white transition-colors duration-300">Products</a>
+                <a href="index.html#contact" class="text-white px-5 py-2 rounded-lg font-semibold clean-button">Contact</a>
             </div>
             <button id="mobile-menu-button" class="md:hidden text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -211,239 +150,143 @@
                 </svg>
             </button>
         </nav>
-        <!-- Mobile Menu -->
+        <!-- Mobile Menu (Modified) -->
         <div id="mobile-menu" class="hidden md:hidden bg-black/50 backdrop-blur-lg">
-             <a href="#mission" class="block text-slate-300 hover:text-white transition-colors duration-300 px-6 py-3">Mission</a>
-             <a href="#products" class="block text-slate-300 hover:text-white transition-colors duration-300 px-6 py-3">Products</a>
-             <a href="#contact" class="block text-white px-6 py-3 rounded-lg font-semibold clean-button mx-4 my-2 text-center">Contact</a>
+             <a href="index.html#mission" class="block text-slate-300 hover:text-white transition-colors duration-300 px-6 py-3">Mission</a>
+             <a href="index.html#products" class="block text-slate-300 hover:text-white transition-colors duration-300 px-6 py-3">Products</a>
+             <a href="index.html#contact" class="block text-white px-6 py-3 rounded-lg font-semibold clean-button mx-4 my-2 text-center">Contact</a>
         </div>
     </header>
 
-    <main>
-        <!-- Section for the large scrolling title -->
-        <div class="title-container">
-            <div class="sticky-title">
-                <h1 id="main-title" class="text-8xl md:text-[16rem] font-normal text-white text-center leading-none">
-                    Celix
-                </h1>
-            </div>
-        </div>
-
-        <!-- Main Content Area -->
-        <div class="content-area pt-20 md:pt-32 pb-32 rounded-t-3xl">
-            <div class="container mx-auto px-6">
+    <!-- Main Content Area -->
+    <main class="relative z-10 min-h-screen bg-black/40 backdrop-blur-xl pt-32 pb-32">
+        <div class="container mx-auto px-6">
             
-                <!-- Mission Section -->
-                <section id="mission" class="py-12">
-                    <div class="max-w-3xl mx-auto text-center">
-                        <h2 class="text-4xl md:text-5xl font-bold text-white mb-8">About</h2>
-                        <div class="placeholder-card rounded-2xl p-6 flex items-center justify-center">
-                             <p class="text-slate-400 text-lg">Here at Celix we develop unique and functional software, providing soloutions to a wide range of problems. We're commited to providing a complete quality experience consitiing of a focus on ease of use, security, whilst maintaining a commitment to well featured zero cost options. We hope you enjoy our products as we strive to make them better. At Celix, there is no finish line.</p>
-                        </div>
-                    </div>
-                </section>
+            <!-- Product Header -->
+            <section class="max-w-4xl mx-auto text-center mb-16">
+                <a href="index.html#products" class="text-indigo-400 hover:text-indigo-300 transition-colors mb-4 inline-block">&larr; Back to Products</a>
+                <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">Email Insights</h1>
+                <p class="text-xl md:text-2xl text-slate-300">
+                    An analytical tool to optimize team workflow by highlighting communication bottlenecks.
+                </p>
+            </section>
 
-                <!-- Products Section -->
-                <section id="products" class="py-16">
-                    <div class="text-center mb-16">
-                        <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Our Products</h2>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <!-- Product Card 1: Email-Insights (MODIFIED) -->
-                        <div class="placeholder-card rounded-2xl p-8 flex flex-col text-left">
-                            <h3 class="text-2xl font-bold text-white mb-3">Email Insights</h3>
-                            <p class="text-slate-400 text-lg flex-grow">
-                                An analytical tool to optimize team workflow by highlighting communication bottlenecks. Email Insights processes correspondence patterns to visually identify weak points, ensure timely responses, and maintain project momentum.
-                            </p>
-                            <!-- UPDATED LINK: Points to a templated page -->
-                            <a href="email-insights-app-page.html" class="mt-6 inline-block font-semibold text-indigo-400 hover:text-indigo-300 transition-colors">
-                                View Details &rarr;
-                            </a>
-                        </div>
+            <!-- Product Screenshot/Hero -->
+            <section class="mb-24">
+                <div class="placeholder-card rounded-2xl p-4 md:p-8">
+                    <img src="https://placehold.co/1200x600/1a1a1a/4a4a4a?text=Email+Insights+App+Screenshot" 
+                         alt="Email Insights Application Screenshot"
+                         class="rounded-lg w-full aspect-video object-cover border border-gray-700/50"
+                         onerror="this.src='https://placehold.co/1200x600/1a1a1a/4a4a4a?text=Image+Not+Available'">
+                </div>
+            </section>
 
-                        <!-- Product Card 2 -->
-                        <div class="placeholder-card rounded-2xl p-8 flex flex-col text-left">
-                           <h3 class="text-2xl font-bold text-white mb-3">Blockchain Voting System</h3>
-                            <p class="text-slate-400 text-lg flex-grow">
-                                A proof-of-concept voting system built on the Ethereum blockchain using C++. This project explores decentralized and transparent voting, showcasing our capabilities in blockchain technology and systems programming.
-                            </p>
-                            <a href="https://github.com/UBERCOW123/Blockchain-Voting" target="_blank" rel="noopener noreferrer" class="mt-6 inline-block font-semibold text-indigo-400 hover:text-indigo-300 transition-colors">
-                                View on GitHub &rarr;
-                            </a>
-                        </div>
+            <!-- Features Section -->
+            <section class="max-w-5xl mx-auto mb-24">
+                <h2 class="text-4xl font-bold text-white text-center mb-12">Core Features</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="placeholder-card rounded-2xl p-8 text-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-indigo-400 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                        <h3 class="text-2xl font-bold text-white mb-3">Workflow Analysis</h3>
+                        <p class="text-slate-400">Visually map out how information flows through your team to identify key communicators.</p>
                     </div>
-                </section>
-                
-                 <!-- Contact Section -->
-                <section id="contact" class="py-16">
-                    <div class="max-w-4xl mx-auto text-center">
-                        <h2 class="text-4xl md:text-5xl font-bold text-white mb-12">Get In Touch</h2>
-                        <div class="grid md:grid-cols-2 gap-12 items-start">
-                            <!-- Contact Info -->
-                            <div class="text-left">
-                                <h3 class="text-2xl font-bold text-white mb-4">Contact Information</h3>
-                                <p class="text-slate-400 mb-6">
-                                    Have a project in mind or just want to say hello? Reach out to us directly or use the form.
-                                </p>
-                                <div class="space-y-4">
-                                    <div class="flex items-center space-x-3">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-400" viewBox="0 0 20 20" fill="currentColor">
-                                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                                        </svg>
-                                        <a href="mailto:GeorgeClark@CelixLtd.onmicrosoft.com" class="text-slate-300 hover:text-white transition-colors">GeorgeClark@CelixLtd.onmicrosoft.com</a>
-                                    </div>
-                                    <div class="flex items-center space-x-3">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-400" viewBox="0 0 20 20" fill="currentColor">
-                                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.518.759a11.037 11.037 0 006.158 6.158l.759-1.518a1 1 0 011.06-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                                        </svg>
-                                        <span class="text-slate-300">07387 426517</span>
-                                    </div>
-                                </div>
-                            </div>
-                
-                            <!-- Contact Form -->
-                            <div class="placeholder-card rounded-2xl p-8">
-                                <form id="contactForm">
-                                    <input type="hidden" name="access_key" value="6d5a403b-d26f-4409-9ef5-2a6310034a92">
-                                    <div class="form-group">
-                                        <label for="name">Your Name</label>
-                                        <input type="text" id="name" name="name" required placeholder="e.g., Jane Doe">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email">Your Email</label>
-                                        <input type="email" id="email" name="email" required placeholder="e.g., jane.doe@example.com">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="message">Message</label>
-                                        <textarea id="message" name="message" rows="4" required placeholder="Your message here..."></textarea>
-                                    </div>
-                                    <div id="form-status" class="text-center mb-4 h-5 transition-all"></div>
-                                    <button type="submit" class="w-full text-white px-5 py-3 rounded-lg font-semibold clean-button">Send Message</button>
-                                </form>
-                            </div>
-                        </div>
+                    <!-- Feature 2 -->
+                    <div class="placeholder-card rounded-2xl p-8 text-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-indigo-400 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <h3 class="text-2xl font-bold text-white mb-3">Bottleneck Detection</h3>
+                        <p class="text-slate-400">Automatically flag emails or threads where responses are late, a single person is overloaded.</p>
                     </div>
-                </section>
+                    <!-- Feature 3 -->
+                    <div class="placeholder-card rounded-2xl p-8 text-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-indigo-400 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <h3 class="text-2xl font-bold text-white mb-3">Response Time Metrics</h3>
+                        <p class="text-slate-400">Track team-wide and individual average response times to ensure timely client communication.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- How It Works Section -->
+            <section class="max-w-3xl mx-auto mb-24">
+                <h2 class="text-4xl font-bold text-white text-center mb-12">How It Works</h2>
+                <div class="placeholder-card rounded-2xl p-8 md:p-12">
+                    <ol class="relative border-l border-gray-700 space-y-10">
+                        <li class="ml-6">
+                            <span class="absolute flex items-center justify-center w-8 h-8 bg-indigo-900 rounded-full -left-4 ring-4 ring-indigo-900/30 text-indigo-300">1</span>
+                            <h3 class="text-xl font-bold text-white mb-1">Connect Your Inbox</h3>
+                            <p class="text-slate-400">Securely grant read-only access to your team's shared inboxes or distribution lists via OAuth.</p>
+                        </li>
+                        <li class="ml-6">
+                            <span class="absolute flex items-center justify-center w-8 h-8 bg-indigo-900 rounded-full -left-4 ring-4 ring-indigo-900/30 text-indigo-300">2</span>
+                            <h3 class="text-xl font-bold text-white mb-1">Process Metadata</h3>
+                            <p class="text-slate-400">Our system analyzes email metadata (sender, receiver, timestamp) without reading the body content, ensuring privacy.</p>
+                        </li>
+                        <li class="ml-6">
+                            <span class="absolute flex items-center justify-center w-8 h-8 bg-indigo-900 rounded-full -left-4 ring-4 ring-indigo-900/30 text-indigo-300">3</span>
+                            <h3 class="text-xl font-bold text-white mb-1">View Your Dashboard</h3>
+                            <p class="text-slate-400">Access a simple, real-time dashboard showing your communication graph, key metrics, and actionable alerts.</p>
+                        </li>
+                    </ol>
+                </div>
+            </section>
 
-            </div>
+            <!-- CTA Section -->
+            <section class="max-w-3xl mx-auto text-center">
+                <h2 class="text-4xl font-bold text-white mb-6">Get Started with Email Insights</h2>
+                <p class="text-xl text-slate-300 mb-8">
+                    Ready to reclaim your team's productivity? Get in touch for a demo or to learn more about our pilot program.
+                </p>
+                <a href="index.html#contact" class="text-white px-8 py-3 rounded-lg font-semibold clean-button text-lg inline-block">
+                    Contact Us
+                </a>
+            </section>
+
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-slate-800 bg-[#050505]">
+    <footer class="border-t border-slate-800 bg-[#050505] relative z-10">
         <div class="container mx-auto px-6 py-8 text-center text-slate-500">
+            <!-- UPDATED FOOTER -->
+            <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-4">
+                <a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="tos.html" class="hover:text-white transition-colors">Terms of Service</a>
+                <a href="delete-data.html" class="hover:text-white transition-colors">Data Deletion</a>
+            </div>
             <p>&copy; 2024 Celix. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        // Main script for all animations
+        // Main script
         document.addEventListener('DOMContentLoaded', () => {
-            const mainTitle = document.getElementById('main-title');
-            const navTitle = document.getElementById('nav-title');
-            const header = document.getElementById('header');
-
-            // --- Title Scroll Animation ---
-            window.addEventListener('scroll', () => {
-                const scrollY = window.scrollY;
-                const vh = window.innerHeight;
-
-                if (scrollY < vh) {
-                    // We are in the scroll area for the title
-                    const scale = Math.max(0.1, 1 - (scrollY / vh) * 0.9); // Scale down to 10%
-                    const opacity = Math.max(0, 1 - (scrollY / vh) * 1.5); // Fade out faster
-                    mainTitle.style.transform = `scale(${scale})`;
-                    mainTitle.style.opacity = opacity;
-                    navTitle.style.opacity = 0;
-                    header.style.backgroundColor = 'transparent';
-                    header.style.backdropFilter = 'none';
-
-                } else {
-                    // Scrolled past the title area
-                    mainTitle.style.transform = 'scale(0.1)';
-                    mainTitle.style.opacity = 0;
-                    navTitle.style.opacity = 1;
-                    header.style.backgroundColor = 'rgba(5, 5, 5, 0.7)';
-                    header.style.backdropFilter = 'blur(10px)';
-                }
-            });
-
+            
             // --- Mobile Menu Toggle ---
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-
-            /**
-             * Sets up the contact form submission using Web3Forms.
-             * Handles form data, sends it to the API endpoint, and displays status messages.
-             */
-            function initContactForm() {
-                const contactForm = document.getElementById('contactForm');
-                const formStatus = document.getElementById('form-status');
-                if (!contactForm || !formStatus) {
-                    console.warn("Contact form or status element not found. Skipping form setup.");
-                    return;
-                }
-
-                contactForm.addEventListener('submit', function(event) {
-                    event.preventDefault();
-
-                    const submitButton = contactForm.querySelector('button[type="submit"]');
-                    const originalButtonText = submitButton.textContent;
-                    submitButton.textContent = 'Sending...';
-                    submitButton.disabled = true;
-                    formStatus.textContent = '';
-                    formStatus.style.color = 'inherit';
-
-                    const formData = new FormData(contactForm);
-                    const formObject = {};
-                    formData.forEach((value, key) => { formObject[key] = value });
-                    const jsonRequestBody = JSON.stringify(formObject);
-
-                    const endpointURL = 'https://api.web3forms.com/submit';
-
-                    fetch(endpointURL, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Accept': 'application/json'
-                        },
-                        body: jsonRequestBody
-                    })
-                    .then(async (response) => {
-                        let jsonResponse = await response.json();
-                        if (response.ok && jsonResponse.success) {
-                            formStatus.textContent = jsonResponse.message || "Message sent successfully!";
-                            formStatus.style.color = '#4ade80'; // text-green-400
-                            contactForm.reset();
-                            setTimeout(() => { formStatus.textContent = ''; }, 5000);
-                        } else {
-                            console.error('Web3Forms submission error:', jsonResponse);
-                            formStatus.textContent = jsonResponse.message || "An error occurred sending the message.";
-                            formStatus.style.color = '#f87171'; // text-red-400
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Form submission fetch error:', error);
-                        formStatus.textContent = 'Could not send message. Please check your network connection.';
-                        formStatus.style.color = '#f87171';
-                    })
-                    .finally(() => {
-                        submitButton.textContent = originalButtonText;
-                        submitButton.disabled = false;
-                    });
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
                 });
             }
 
-            // Initialize the contact form logic
-            initContactForm();
+            // --- Close mobile menu on link click ---
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+            
         });
     </script>
 </body>
 </html>
-
 
