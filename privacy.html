@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Celix</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+        .backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #1a001a;
+            filter: blur(3vw) contrast(200%) saturate(150%) brightness(0.6);
+            z-index: -1;
+        }
+        .backdrop .shape { position: absolute; aspect-ratio: 1/1; border-radius: 100%; }
+        .backdrop .shape.one { width: 40svw; background: rgba(153, 255, 204, 0.5); animation: shape-one 12s ease-in-out infinite alternate; animation-delay: -2s; }
+        .backdrop .shape.two { width: 25lvw; background: rgba(255, 221, 153, 0.5); animation: shape-two 8s ease-in-out infinite alternate; animation-delay: -1s; }
+        .backdrop .shape.three { width: 32svw; background: rgba(153, 238, 255, 0.5); animation: shape-three 10s ease-in-out infinite alternate; animation-delay: -3.5s; }
+        .backdrop .shape.four { width: 37svw; background: rgba(255, 153, 179, 0.5); animation: shape-four 11s ease-in-out infinite alternate; animation-delay: -0.4s; }
+        .backdrop .shape.five { width: 24svw; background: rgba(153, 247, 255, 0.5); animation: shape-five 14s ease-in-out infinite alternate; animation-delay: -7.4s; }
+        .backdrop .shape.six { width: 28svw; background: rgba(240, 168, 192, 0.5); animation: shape-six 15s ease-in-out infinite alternate; animation-delay: -5s; }
+        .clean-button { background-color: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); transition: background-color 0.3s ease, transform 0.2s ease; }
+        .clean-button:hover { background-color: rgba(255, 255, 255, 0.15); transform: translateY(-2px); }
+        .placeholder-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); }
+        @keyframes shape-one { from { transform: rotate(90deg) translate(45lvh, 5lvw); } 50% { transform: rotate(100deg) translate(-10lvh, -15lvw); } to { transform: rotate(120deg) translate(-20lvh, 10lvw); } }
+        @keyframes shape-two { from { transform: rotate(200deg) translate(-35lvh, 12lvw); } to { transform: rotate(280deg) translate(-25lvh, -5lvw); } }
+        @keyframes shape-three { from { transform: rotate(-165deg) translate(24lvh, -32lvw); } 50% { transform: rotate(-140deg) translate(5lvh, 10lvw); } to { transform: rotate(-100deg) translate(10lvh, -20lvw); } }
+        @keyframes shape-four { from { transform: rotate(-55deg) translate(30lvh, 26lvw); } to { transform: rotate(-90deg) translate(40lvh, 10lvw); } }
+        @keyframes shape-five { from { transform: rotate(120deg) translate(-40lvh, 46lvw); } to { transform: rotate(95deg) translate(52lvh, -30lvw); } }
+        @keyframes shape-six { from { transform: rotate(25deg) translate(-16lvh, -19lvw); } to { transform: rotate(-20deg) translate(20lvh, 10lvw); } }
+        
+        /* Styles for legal text */
+        .legal-content h2 {
+            font-size: 1.875rem; /* text-3xl */
+            font-weight: 700; /* font-bold */
+            color: white;
+            margin-top: 2rem; /* mt-8 */
+            margin-bottom: 1rem; /* mb-4 */
+        }
+        .legal-content h3 {
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 600; /* font-semibold */
+            color: white;
+            margin-top: 1.5rem; /* mt-6 */
+            margin-bottom: 0.75rem; /* mb-3 */
+        }
+        .legal-content p, .legal-content ul {
+            color: #cbd5e1; /* text-slate-300 */
+            margin-bottom: 1rem; /* mb-4 */
+            line-height: 1.6;
+        }
+        .legal-content ul {
+            list-style-type: disc;
+            margin-left: 1.5rem; /* ml-6 */
+        }
+        .legal-content a {
+            color: #818cf8; /* text-indigo-400 */
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+        .legal-content a:hover {
+            color: #a7affb; /* text-indigo-300 */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CSS Animated Backdrop -->
+    <div class="backdrop">
+        <div class="shape one"></div>
+        <div class="shape two"></div>
+        <div class="shape three"></div>
+        <div class="shape four"></div>
+        <div class="shape five"></div>
+        <div class="shape six"></div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-black/70 backdrop-blur-lg">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-3xl font-bold text-white tracking-wider transition-opacity duration-500">Celix</a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="index.html#mission" class="text-slate-300 hover:text-white transition-colors duration-300">Mission</a>
+                <a href="index.html#products" class="text-slate-300 hover:text-white transition-colors duration-300">Products</a>
+                <a href="index.html#contact" class="text-white px-5 py-2 rounded-lg font-semibold clean-button">Contact</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black/50 backdrop-blur-lg">
+             <a href="index.html#mission" class="block text-slate-300 hover:text-white transition-colors duration-300 px-6 py-3">Mission</a>
+             <a href="index.html#products" class="block text-slate-300 hover:text-white transition-colors duration-300 px-6 py-3">Products</a>
+             <a href="index.html#contact" class="block text-white px-6 py-3 rounded-lg font-semibold clean-button mx-4 my-2 text-center">Contact</a>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="relative z-10 min-h-screen bg-black/40 backdrop-blur-xl pt-32 pb-32">
+        <div class="container mx-auto px-6 max-w-4xl legal-content">
+            
+            <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 text-center">Privacy Policy</h1>
+            <p class="text-center text-slate-400">Last updated: [Date]</p>
+
+            <!-- Legal Disclaimer -->
+            <div class="my-8 p-4 rounded-lg bg-yellow-900/20 border border-yellow-500/30 text-yellow-200">
+                <p class="font-bold">Important Legal Notice:</p>
+                <p class="text-sm">This is a general template and not legal advice. You must consult with a qualified legal professional to ensure this policy is complete and compliant with all applicable laws for your business and jurisdiction (e.g., GDPR, CCPA).</p>
+            </div>
+
+            <p>Welcome to Celix. We respect your privacy and are committed to protecting your personal data. This privacy policy will inform you as to how we look after your personal data when you visit our website (regardless of where you visit it from) and tell you about your privacy rights and how the law protects you.</p>
+
+            <h2>1. Information We Collect</h2>
+            <p>We may collect, use, store, and transfer different kinds of personal data about you which we have grouped together as follows:</p>
+            <ul>
+                <li><strong>Identity Data:</strong> includes first name, last name, or similar identifier.</li>
+                <li><strong>Contact Data:</strong> includes email address and telephone numbers.</li>
+                <li><strong>Technical Data:</strong> includes internet protocol (IP) address, browser type and version, time zone setting and location, browser plug-in types and versions, operating system and platform, and other technology on the devices you use to access this website.</li>
+                <li><strong>Usage Data:</strong> includes information about how you use our website and services.</li>
+                <li><strong>Marketing and Communications Data:</strong> includes your preferences in receiving marketing from us and our third parties and your communication preferences.</li>
+            </ul>
+            <p>We collect this data in the following ways:</p>
+            <ul>
+                <li><strong>Direct interactions:</strong> You may give us your Identity and Contact Data by filling in forms or by corresponding with us by email. This includes personal data you provide when you use our contact form.</li>
+                <li><strong>Automated technologies or interactions:</strong> As you interact with our website, we may automatically collect Technical Data about your equipment, browsing actions, and patterns. (e.g., via Google Analytics).</li>
+            </ul>
+
+            <h2>2. How We Use Your Information</h2>
+            <p>We will only use your personal data when the law allows us to. Most commonly, we will use your personal data in the following circumstances:</p>
+            <ul>
+                <li>To respond to your inquiries or requests submitted via our contact form.</li>
+                <li>To manage our relationship with you.</li>
+                <li>To use data analytics to improve our website, services, marketing, customer relationships, and experiences.</li>
+                <li>To comply with a legal or regulatory obligation.</li>
+            </ul>
+
+            <h2>3. Information Sharing and Disclosure</h2>
+            <p>We do not sell, rent, or trade your personal information with third parties for their marketing purposes.</p>
+            <p>We may share your data with third-party service providers who perform services on our behalf, such as:</p>
+            <ul>
+                <li>Email form processors (e.g., Web3Forms) to handle your contact submissions.</li>
+                <li>Website analytics providers (e.g., Google Analytics).</li>
+            </ul>
+            <p>We may also disclose your personal data if required by law or in response to valid requests by public authorities.</p>
+
+            <h2>4. Data Security</h2>
+            <p>We have put in place appropriate security measures to prevent your personal data from being accidentally lost, used, or accessed in an unauthorized way, altered, or disclosed. However, no method of transmission over the Internet or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your personal data, we cannot guarantee its absolute security.</p>
+
+            <h2>5. Your Legal Rights</h2>
+            <p>Depending on your location and jurisdiction (e.g., GDPR in Europe), you may have rights including:</p>
+            <ul>
+                <li>The right to access, update, or delete the information we have on you.</li>
+                <li>The right of rectification.</li>
+                <li>The right to object.</li>
+                <li>The right of restriction.</li>
+                <li>The right to data portability.</li>
+                <li>The right to withdraw consent.</li>
+            </ul>
+            <p>If you wish to exercise any of these rights, please contact us.</p>
+
+            <h2>6. Changes to This Privacy Policy</h2>
+            <p>We may update this privacy policy from time to time. We will notify you of any changes by posting the new privacy policy on this page. You are advised to review this privacy policy periodically for any changes.</p>
+
+            <h2>7. Contact Us</h2>
+            <p>If you have any questions about this privacy policy, please contact us at:</p>
+            <p><a href="mailto:GeorgeClark@CelixLtd.onmicrosoft.com">GeorgeClark@CelixLtd.onmicrosoft.com</a></p>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-[#050505] relative z-10">
+        <div class="container mx-auto px-6 py-8 text-center text-slate-500">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="tos.html" class="hover:text-white transition-colors">Terms of Service</a>
+            </div>
+            <p>&copy; 2024 Celix. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
