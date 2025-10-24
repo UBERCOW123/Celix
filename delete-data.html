@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Deletion - Celix</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+        .backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #1a001a;
+            filter: blur(3vw) contrast(200%) saturate(150%) brightness(0.6);
+            z-index: -1;
+        }
+        .backdrop .shape { position: absolute; aspect-ratio: 1/1; border-radius: 100%; }
+        .backdrop .shape.one { width: 40svw; background: rgba(153, 255, 204, 0.5); animation: shape-one 12s ease-in-out infinite alternate; animation-delay: -2s; }
+        .backdrop .shape.two { width: 25lvw; background: rgba(255, 221, 153, 0.5); animation: shape-two 8s ease-in-out infinite alternate; animation-delay: -1s; }
+        .backdrop .shape.three { width: 32svw; background: rgba(153, 238, 255, 0.5); animation: shape-three 10s ease-in-out infinite alternate; animation-delay: -3.5s; }
+        .backdrop .shape.four { width: 37svw; background: rgba(255, 153, 179, 0.5); animation: shape-four 11s ease-in-out infinite alternate; animation-delay: -0.4s; }
+        .backdrop .shape.five { width: 24svw; background: rgba(153, 247, 255, 0.5); animation: shape-five 14s ease-in-out infinite alternate; animation-delay: -7.4s; }
+        .backdrop .shape.six { width: 28svw; background: rgba(240, 168, 192, 0.5); animation: shape-six 15s ease-in-out infinite alternate; animation-delay: -5s; }
+        .clean-button { background-color: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); transition: background-color 0.3s ease, transform 0.2s ease; }
+        .clean-button:hover { background-color: rgba(255, 255, 255, 0.15); transform: translateY(-2px); }
+        .placeholder-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); }
+        @keyframes shape-one { from { transform: rotate(90deg) translate(45lvh, 5lvw); } 50% { transform: rotate(100deg) translate(-10lvh, -15lvw); } to { transform: rotate(120deg) translate(-20lvh, 10lvw); } }
+        @keyframes shape-two { from { transform: rotate(200deg) translate(-35lvh, 12lvw); } to { transform: rotate(280deg) translate(-25lvh, -5lvw); } }
+        @keyframes shape-three { from { transform: rotate(-165deg) translate(24lvh, -32lvw); } 50% { transform: rotate(-140deg) translate(5lvh, 10lvw); } to { transform: rotate(-100deg) translate(10lvh, -20lvw); } }
+        @keyframes shape-four { from { transform: rotate(-55deg) translate(30lvh, 26lvw); } to { transform: rotate(-90deg) translate(40lvh, 10lvw); } }
+        @keyframes shape-five { from { transform: rotate(120deg) translate(-40lvh, 46lvw); } to { transform: rotate(95deg) translate(52lvh, -30lvw); } }
+        @keyframes shape-six { from { transform: rotate(25deg) translate(-16lvh, -19lvw); } to { transform: rotate(-20deg) translate(20lvh, 10lvw); } }
+        
+        /* Styles for instructions */
+        .instruction-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .instruction-content h2 {
+            font-size: 1.875rem; /* text-3xl */
+            font-weight: 700; /* font-bold */
+            color: white;
+            margin-top: 2rem; /* mt-8 */
+            margin-bottom: 1rem; /* mb-4 */
+        }
+        .instruction-content p, .instruction-content ol {
+            color: #cbd5e1; /* text-slate-300 */
+            margin-bottom: 1.5rem; /* mb-6 */
+            line-height: 1.7;
+            font-size: 1.125rem; /* text-lg */
+        }
+        .instruction-content ol {
+            list-style-type: decimal;
+            margin-left: 1.5rem; /* ml-6 */
+            space-y: 1rem; /* space-y-4 */
+        }
+        .instruction-content code {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #f0abfc; /* text-fuchsia-300 */
+            padding: 0.2rem 0.5rem;
+            border-radius: 0.375rem; /* rounded-md */
+            font-size: 1rem;
+        }
+        .instruction-content strong {
+            color: white;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CSS Animated Backdrop -->
+    <div class="backdrop">
+        <div class="shape one"></div>
+        <div class="shape two"></div>
+        <div class="shape three"></div>
+        <div class="shape four"></div>
+        <div class="shape five"></div>
+        <div class="shape six"></div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-black/70 backdrop-blur-lg">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-3xl font-bold text-white tracking-wider transition-opacity duration-500">Celix</a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="index.html#mission" class="text-slate-300 hover:text-white transition-colors duration-300">Mission</a>
+                <a href="index.html#products" class="text-slate-300 hover:text-white transition-colors duration-300">Products</a>
+                <a href="index.html#contact" class="text-white px-5 py-2 rounded-lg font-semibold clean-button">Contact</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black/50 backdrop-blur-lg">
+             <a href="index.html#mission" class="block text-slate-300 hover:text-white transition-colors duration-300 px-6 py-3">Mission</a>
+             <a href="index.html#products" class="block text-slate-300 hover:text-white transition-colors duration-300 px-6 py-3">Products</a>
+             <a href="index.html#contact" class="block text-white px-6 py-3 rounded-lg font-semibold clean-button mx-4 my-2 text-center">Contact</a>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="relative z-10 min-h-screen bg-black/40 backdrop-blur-xl pt-32 pb-32">
+        <div class="container mx-auto px-6 instruction-content">
+            
+            <h1 class="text-5xl md:text-6xl font-bold text-white mb-8 text-center">Data Deletion Instructions</h1>
+
+            <div class="placeholder-card rounded-2xl p-8 md:p-12">
+                <p>Our "Email Insights" browser extension is designed with privacy as a priority. **We do not have a server, and we do not collect or store any of your personal data.**</p>
+                
+                <p>All data generated by the extension (such as your email statistics, settings, and analysis credits) is stored **only on your local computer** using your browser's secure storage.</p>
+
+                <p>Because the data is only on your machine, you have full control and are the only one who can delete it. To clear all data stored by the extension, please follow these steps:</p>
+
+                <ol>
+                    <li>
+                        In your browser, right-click the **"Email Insights" extension icon** in your toolbar.
+                    </li>
+                    <li>
+                        From the menu, click on **"Options"**.
+                    </li>
+                    <li>
+                        This will open the extension's options page. Scroll down to the bottom to find the **"Data Management"** section.
+                    </li>
+                    <li>
+                        Click the red button that says **"Clear All Stored Data"**.
+                    </li>
+                    <li>
+                        A confirmation box will appear. Click **"OK"** to confirm.
+                    </li>
+                </ol>
+
+                <p class="mt-8">After following these steps, all statistics, analysis credits, and settings associated with the extension will be permanently erased from your computer. Uninstalling the extension will also remove all associated data.</p>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-[#050505] relative z-10">
+        <div class="container mx-auto px-6 py-8 text-center text-slate-500">
+            <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-4">
+                <a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="tos.html" class="hover:text-white transition-colors">Terms of Service</a>
+                <a href="delete-data.html" class="hover:text-white transition-colors">Data Deletion</a>
+            </div>
+            <p>&copy; 2024 Celix. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
