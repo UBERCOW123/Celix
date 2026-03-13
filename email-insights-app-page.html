@@ -9,10 +9,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, "Inter", sans-serif;
             background-color: #000000;
-            color: #e2e8f0;
+            color: #f5f5f7;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         /* --- Animated Backdrop (Copied from index.html) --- */
@@ -77,19 +79,28 @@
 
         /* --- Component Styles (Copied from index.html) --- */
         .clean-button {
-            background-color: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border-radius: 980px;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.2s ease;
+            border: none;
         }
 
         .clean-button:hover {
             background-color: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
+            transform: scale(1.02);
         }
         
         .placeholder-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 24px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
         }
 
         /* --- Keyframe Animations (Copied from index.html) --- */
@@ -133,29 +144,34 @@
         <div class="shape six"></div>
     </div>
 
-    <!-- Header Navigation (Modified for this page) -->
-    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-black/70 backdrop-blur-lg">
+    <!-- Header Navigation -->
+    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300" id="header" style="background-color: rgba(5, 5, 5, 0.7); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- Logo links back to home -->
-            <a href="index.html" class="text-3xl font-bold text-white tracking-wider transition-opacity duration-500">Celix</a>
-            
+            <a href="index.html" id="nav-title"
+                class="text-2xl font-medium text-white tracking-tight transition-opacity duration-300">Celix
+            </a>
             <div class="hidden md:flex items-center space-x-8">
-                <!-- Links point back to index.html sections -->
-                <a href="index.html#mission" class="text-slate-300 hover:text-white transition-colors duration-300">Mission</a>
-                <a href="index.html#products" class="text-slate-300 hover:text-white transition-colors duration-300">Products</a>
-                <a href="index.html#contact" class="text-white px-5 py-2 rounded-lg font-semibold clean-button">Contact</a>
+                <a href="index.html#mission" class="text-[#86868b] hover:text-white transition-colors duration-300">Mission</a>
+                <a href="index.html#products" class="text-[#86868b] hover:text-white transition-colors duration-300">Products</a>
+                <a href="index.html#contact" class="bg-[#f5f5f7] text-black rounded-full font-medium transition-all duration-200 hover:scale-[1.02] px-5 py-2 border-none">Contact</a>
             </div>
             <button id="mobile-menu-button" class="md:hidden text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
                 </svg>
             </button>
         </nav>
-        <!-- Mobile Menu (Modified) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-black/50 backdrop-blur-lg">
-             <a href="index.html#mission" class="block text-slate-300 hover:text-white transition-colors duration-300 px-6 py-3">Mission</a>
-             <a href="index.html#products" class="block text-slate-300 hover:text-white transition-colors duration-300 px-6 py-3">Products</a>
-             <a href="index.html#contact" class="block text-white px-6 py-3 rounded-lg font-semibold clean-button mx-4 my-2 text-center">Contact</a>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-black/70 backdrop-blur-xl absolute w-full left-0 border-b border-white/5">
+            <a href="index.html#mission"
+                class="block text-[#86868b] hover:text-white transition-colors duration-300 px-6 py-4 text-lg border-b border-white/5">Mission</a>
+            <a href="index.html#products"
+                class="block text-[#86868b] hover:text-white transition-colors duration-300 px-6 py-4 text-lg border-b border-white/5">Products</a>
+            <div class="p-6">
+                <a href="index.html#contact" class="block bg-[#f5f5f7] text-black text-center py-3 w-full rounded-full font-medium hover:scale-[1.02] transition-all duration-200 text-lg">Contact</a>
+            </div>
         </div>
     </header>
 
@@ -251,15 +267,18 @@
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-slate-800 bg-[#050505] relative z-10">
-        <div class="container mx-auto px-6 py-8 text-center text-slate-500">
-            <!-- UPDATED FOOTER -->
-            <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-4">
-                <a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a>
-                <a href="tos.html" class="hover:text-white transition-colors">Terms of Service</a>
-                <a href="delete-data.html" class="hover:text-white transition-colors">Data Deletion</a>
+    <footer class="border-t border-white/10 bg-black relative z-10">
+        <div class="container mx-auto px-6 py-10">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="text-[#86868b] text-sm">
+                    &copy; 2025 Celix. All rights reserved.
+                </div>
+                <div class="flex gap-6 text-sm">
+                    <a href="privacy.html" class="text-[#86868b] hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="tos.html" class="text-[#86868b] hover:text-white transition-colors">Terms of Service</a>
+                    <a href="delete-data.html" class="text-[#86868b] hover:text-white transition-colors">Data Deletion</a>
+                </div>
             </div>
-            <p>&copy; 2025 Celix. All rights reserved.</p>
         </div>
     </footer>
 

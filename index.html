@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Celix - Software Development</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            /* Clean, modern font stack prioritizing Apple's native typography */
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, "Inter", sans-serif;
             background-color: #000000;
-            color: #e2e8f0;
+            color: #f5f5f7;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* --- New Animated Backdrop --- */
+        /* --- Original Animated Backdrop --- */
         .backdrop {
             position: fixed;
             top: 0;
@@ -53,14 +57,14 @@
             animation: shape-three 10s ease-in-out infinite alternate;
             animation-delay: -3.5s;
         }
-        
+
         .backdrop .shape.four {
             width: 37svw;
             background: rgba(255, 153, 179, 0.5);
             animation: shape-four 11s ease-in-out infinite alternate;
             animation-delay: -0.4s;
         }
-        
+
         .backdrop .shape.five {
             width: 24svw;
             background: rgba(153, 247, 255, 0.5);
@@ -77,9 +81,9 @@
 
         /* Sticky container for the main title scroll effect */
         .title-container {
-            height: 200vh; /* Provides scroll space to animate the title */
+            height: 200vh;
         }
-        
+
         .sticky-title {
             position: sticky;
             top: 0;
@@ -94,97 +98,188 @@
         .content-area {
             position: relative;
             z-index: 10;
-            /* Semi-transparent background with a blur to see the animation behind */
-            background-color: rgba(5, 5, 5, 0.4);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-        
-        /* New clean button style */
-        .clean-button {
-            background-color: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
-        .clean-button:hover {
-            background-color: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
+        /* Typography specific to title elements */
+        #main-title,
+        #nav-title {
+            font-family: 'Inter', sans-serif;
         }
-        
-        /* Placeholder content card styling */
-        .placeholder-card {
-            background: rgba(255, 255, 255, 0.03);
+
+        /* Thin, elegant main component mimicking Apple's presentation */
+        #main-title {
+            font-weight: 300;
+            /* Thin look */
+            letter-spacing: -0.05em;
+            /* Tight tracking */
+            will-change: transform, opacity;
+            transform-origin: center center;
+            color: #ffffff;
+        }
+
+        /* Clean Glass Cards */
+        .apple-card {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 24px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .apple-card:hover, .apple-card-active {
+            transform: scale(1.02);
+            background: rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            min-height: 300px;
         }
 
-        /* --- Styling for the new contact form --- */
-        .form-group {
-            margin-bottom: 1.5rem;
-            text-align: left;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: #9ca3af; /* text-gray-400 */
-        }
-        .form-group input,
-        .form-group textarea {
+        /* Clean Form Input */
+        .apple-input {
             width: 100%;
-            background-color: rgba(255, 255, 255, 0.05);
+            background-color: rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 0.5rem; /* rounded-lg */
-            padding: 0.75rem 1rem;
-            color: #e2e8f0;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 12px;
+            padding: 0.875rem 1rem;
+            color: #ffffff;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
-        .form-group input:focus,
-        .form-group textarea:focus {
+
+        .apple-input:focus {
             outline: none;
-            border-color: rgba(129, 140, 248, 0.7); /* indigo-400 */
-            box-shadow: 0 0 0 2px rgba(129, 140, 248, 0.3);
+            background-color: rgba(0, 0, 0, 0.6);
+            border-color: rgba(129, 140, 248, 0.5);
+            box-shadow: 0 0 0 4px rgba(129, 140, 248, 0.15);
         }
-        
-        /* --- Keyframe Animations for Shapes --- */
+
+        /* New clean button style */
+        .apple-button {
+            background-color: #f5f5f7;
+            color: #000000;
+            border-radius: 980px;
+            /* Pill shape */
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .apple-button:hover {
+            background-color: #ffffff;
+            transform: scale(1.02);
+        }
+
+        .apple-button-secondary {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border-radius: 980px;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.2s ease;
+        }
+
+        .apple-button-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            transform: scale(1.02);
+        }
+
+        /* Prevent header border flashing on first scroll by initializing the border */
+        #header {
+            border-bottom: 1px solid transparent;
+        }
+
+        /* --- Keyframe Animations for Shapes (Original) --- */
         @keyframes shape-one {
-            from { transform: rotate(90deg) translate(45lvh, 5lvw); }
-            50% { transform: rotate(100deg) translate(-10lvh, -15lvw); }
-            to { transform: rotate(120deg) translate(-20lvh, 10lvw); }
+            from {
+                transform: rotate(90deg) translate(45lvh, 5lvw);
+            }
+
+            50% {
+                transform: rotate(100deg) translate(-10lvh, -15lvw);
+            }
+
+            to {
+                transform: rotate(120deg) translate(-20lvh, 10lvw);
+            }
         }
 
         @keyframes shape-two {
-            from { transform: rotate(200deg) translate(-35lvh, 12lvw); }
-            to { transform: rotate(280deg) translate(-25lvh, -5lvw); }
+            from {
+                transform: rotate(200deg) translate(-35lvh, 12lvw);
+            }
+
+            to {
+                transform: rotate(280deg) translate(-25lvh, -5lvw);
+            }
         }
 
         @keyframes shape-three {
-            from { transform: rotate(-165deg) translate(24lvh, -32lvw); }
-            50% { transform: rotate(-140deg) translate(5lvh, 10lvw); }
-            to { transform: rotate(-100deg) translate(10lvh, -20lvw); }
+            from {
+                transform: rotate(-165deg) translate(24lvh, -32lvw);
+            }
+
+            50% {
+                transform: rotate(-140deg) translate(5lvh, 10lvw);
+            }
+
+            to {
+                transform: rotate(-100deg) translate(10lvh, -20lvw);
+            }
         }
-        
+
         @keyframes shape-four {
-            from { transform: rotate(-55deg) translate(30lvh, 26lvw); }
-            to { transform: rotate(-90deg) translate(40lvh, 10lvw); }
+            from {
+                transform: rotate(-55deg) translate(30lvh, 26lvw);
+            }
+
+            to {
+                transform: rotate(-90deg) translate(40lvh, 10lvw);
+            }
         }
 
         @keyframes shape-five {
-            from { transform: rotate(120deg) translate(-40lvh, 46lvw); }
-            to { transform: rotate(95deg) translate(52lvh, -30lvw); }
+            from {
+                transform: rotate(120deg) translate(-40lvh, 46lvw);
+            }
+
+            to {
+                transform: rotate(95deg) translate(52lvh, -30lvw);
+            }
         }
 
         @keyframes shape-six {
-            from { transform: rotate(25deg) translate(-16lvh, -19lvw); }
-            to { transform: rotate(-20deg) translate(20lvh, 10lvw); }
+            from {
+                transform: rotate(25deg) translate(-16lvh, -19lvw);
+            }
+
+            to {
+                transform: rotate(-20deg) translate(20lvh, 10lvw);
+            }
+        }
+
+        /* Typography sizing for the cards */
+        .section-title {
+            font-weight: 500;
+            letter-spacing: -0.02em;
+        }
+
+        .card-title {
+            font-weight: 500;
+            letter-spacing: -0.01em;
+        }
+
+        .light-text {
+            color: #86868b;
+            font-weight: 400;
         }
     </style>
 </head>
+
 <body>
 
-    <!-- CSS Animated Backdrop -->
+    <!-- CSS Animated Backdrop (Restored to original) -->
     <div class="backdrop">
         <div class="shape one"></div>
         <div class="shape two"></div>
@@ -194,28 +289,34 @@
         <div class="shape six"></div>
     </div>
 
-
     <!-- Header Navigation -->
     <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300" id="header">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- The title in the nav is initially hidden -->
-            <h1 id="nav-title" class="text-3xl font-bold text-white tracking-wider opacity-0 transition-opacity duration-500">Celix</h1>
+            <h1 id="nav-title"
+                class="text-2xl font-medium text-white tracking-tight opacity-0 transition-opacity duration-300">Celix
+            </h1>
             <div class="hidden md:flex items-center space-x-8">
-                <a href="#mission" class="text-slate-300 hover:text-white transition-colors duration-300">Mission</a>
-                <a href="#products" class="text-slate-300 hover:text-white transition-colors duration-300">Products</a>
-                <a href="#contact" class="text-white px-5 py-2 rounded-lg font-semibold clean-button">Contact</a>
+                <a href="#mission" class="light-text hover:text-white transition-colors duration-300">Mission</a>
+                <a href="#products" class="light-text hover:text-white transition-colors duration-300">Products</a>
+                <a href="#contact" class="apple-button px-5 py-2">Contact</a>
             </div>
             <button id="mobile-menu-button" class="md:hidden text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
                 </svg>
             </button>
         </nav>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-black/50 backdrop-blur-lg">
-             <a href="#mission" class="block text-slate-300 hover:text-white transition-colors duration-300 px-6 py-3">Mission</a>
-             <a href="#products" class="block text-slate-300 hover:text-white transition-colors duration-300 px-6 py-3">Products</a>
-             <a href="#contact" class="block text-white px-6 py-3 rounded-lg font-semibold clean-button mx-4 my-2 text-center">Contact</a>
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-black/70 backdrop-blur-xl absolute w-full left-0 border-b border-white/5">
+            <a href="#mission"
+                class="block light-text hover:text-white transition-colors duration-300 px-6 py-4 text-lg border-b border-white/5">Mission</a>
+            <a href="#products"
+                class="block light-text hover:text-white transition-colors duration-300 px-6 py-4 text-lg border-b border-white/5">Products</a>
+            <div class="p-6">
+                <a href="#contact" class="block apple-button text-center py-3 w-full text-lg">Contact</a>
+            </div>
         </div>
     </header>
 
@@ -223,103 +324,132 @@
         <!-- Section for the large scrolling title -->
         <div class="title-container">
             <div class="sticky-title">
-                <h1 id="main-title" class="text-8xl md:text-[16rem] font-normal text-white text-center leading-none">
+                <h1 id="main-title" class="text-7xl md:text-[14rem] text-center leading-none">
                     Celix
                 </h1>
             </div>
         </div>
 
         <!-- Main Content Area -->
-        <div class="content-area pt-20 md:pt-32 pb-32 rounded-t-3xl">
-            <div class="container mx-auto px-6">
-            
+        <div class="content-area pt-16 md:pt-32 pb-32">
+            <div class="container mx-auto px-6 max-w-6xl">
+
                 <!-- Mission Section -->
-                <section id="mission" class="py-12">
-                    <div class="max-w-3xl mx-auto text-center">
-                        <h2 class="text-4xl md:text-5xl font-bold text-white mb-8">About</h2>
-                        <div class="placeholder-card rounded-2xl p-6 flex items-center justify-center">
-                             <p class="text-slate-400 text-lg">Celix is a technology business focused on consulting and contracting. Currently operated by a small team of student developers, with interests and skills spanning the whole sector we would be glad to contribute meaningfully to your project. We are capable of developing complete systems and affordably adding features to existing ones. So get in contact.</p>
+                <section id="mission" class="py-16">
+                    <div class="max-w-4xl mx-auto text-center">
+                        <h2 class="text-4xl md:text-5xl section-title text-white mb-8">Engineering excellence.</h2>
+                        <div class="apple-card apple-card-active p-10 md:p-14">
+                            <p class="light-text text-xl md:text-2xl leading-relaxed text-left md:text-center">
+                                Celix is a technology business focused on consulting and contracting. Currently operated
+                                by a small team of student developers, with interests and skills spanning the whole
+                                sector we would be glad to contribute meaningfully to your project. We develop complete
+                                systems and seamlessly integrate features.
+                            </p>
                         </div>
                     </div>
                 </section>
 
                 <!-- Products Section -->
-                <section id="products" class="py-16">
+                <section id="products" class="py-24">
                     <div class="text-center mb-16">
-                        <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Our Products</h2>
+                        <h2 class="text-4xl md:text-5xl section-title text-white mb-4">Our Products</h2>
                     </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
                         <!-- Product Card 1: Email-Insights -->
-                        <div class="placeholder-card rounded-2xl p-8 flex flex-col text-left">
-                            <h3 class="text-2xl font-bold text-white mb-3">Email Insights</h3>
-                            <p class="text-slate-400 text-lg flex-grow">
-                                An analytical tool to optimize team workflow by highlighting communication bottlenecks. Email Insights processes correspondence patterns to visually identify weak points, ensure timely responses, and maintain project momentum.
+                        <div class="apple-card p-10 flex flex-col text-left">
+                            <h3 class="text-3xl card-title text-white mb-4">Email Insights</h3>
+                            <p class="light-text text-lg flex-grow leading-relaxed">
+                                An analytical tool to optimize team workflow by highlighting communication bottlenecks.
+                                Email Insights processes correspondence patterns to visually identify weak points,
+                                ensure timely responses, and maintain project momentum.
                             </p>
-                            <a href="email-insights-app-page.html" class="mt-6 inline-block font-semibold text-indigo-400 hover:text-indigo-300 transition-colors">
-                                View Details &rarr;
-                            </a>
+                            <div class="mt-8">
+                                <a href="email-insights-app-page.html"
+                                    class="apple-button-secondary inline-block px-6 py-3">
+                                    View Details
+                                </a>
+                            </div>
                         </div>
 
                         <!-- Product Card 2 -->
-                        <div class="placeholder-card rounded-2xl p-8 flex flex-col text-left">
-                           <h3 class="text-2xl font-bold text-white mb-3">Blockchain Voting System</h3>
-                            <p class="text-slate-400 text-lg flex-grow">
-                                A proof-of-concept voting system built on the Ethereum blockchain using C++. This project explores decentralized and transparent voting, showcasing our capabilities in blockchain technology and systems programming.
+                        <div class="apple-card p-10 flex flex-col text-left">
+                            <h3 class="text-3xl card-title text-white mb-4">Blockchain Voting</h3>
+                            <p class="light-text text-lg flex-grow leading-relaxed">
+                                A proof-of-concept voting system built on the Ethereum blockchain using C++. This
+                                project explores decentralized and transparent voting, showcasing our capabilities in
+                                blockchain technology and systems programming.
                             </p>
-                            <a href="https://github.com/UBERCOW123/Blockchain-Voting" target="_blank" rel="noopener noreferrer" class="mt-6 inline-block font-semibold text-indigo-400 hover:text-indigo-300 transition-colors">
-                                View on GitHub &rarr;
-                            </a>
+                            <div class="mt-8">
+                                <a href="https://github.com/UBERCOW123/Blockchain-Voting" target="_blank"
+                                    rel="noopener noreferrer" class="apple-button-secondary inline-block px-6 py-3">
+                                    View on GitHub
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </section>
-                
-                 <!-- Contact Section -->
-                <section id="contact" class="py-16">
-                    <div class="max-w-4xl mx-auto text-center">
-                        <h2 class="text-4xl md:text-5xl font-bold text-white mb-12">Get In Touch</h2>
-                        <div class="grid md:grid-cols-2 gap-12 items-start">
+
+                <!-- Contact Section -->
+                <section id="contact" class="py-24">
+                    <div class="max-w-5xl mx-auto">
+                        <div class="text-center mb-16">
+                            <h2 class="text-4xl md:text-5xl section-title text-white">Get in touch.</h2>
+                        </div>
+
+                        <div class="grid md:grid-cols-5 gap-12 md:gap-16 items-stretch">
                             <!-- Contact Info -->
-                            <div class="text-left">
-                                <h3 class="text-2xl font-bold text-white mb-4">Contact Information</h3>
-                                <p class="text-slate-400 mb-6">
-                                    Have a project in mind or just want to say hello? Reach out to us directly or use the form.
+                            <div class="md:col-span-2 text-left apple-card p-8 md:p-10 flex flex-col justify-center">
+                                <h3 class="text-2xl card-title text-white mb-6">Contact Information</h3>
+                                <p class="light-text text-lg mb-8 leading-relaxed">
+                                    Have a project in mind or just want to say hello? Reach out to us directly or use
+                                    the form.
                                 </p>
-                                <div class="space-y-4">
-                                    <div class="flex items-center space-x-3">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-400" viewBox="0 0 20 20" fill="currentColor">
-                                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                                        </svg>
-                                        <a href="mailto:GeorgeClark@CelixLtd.onmicrosoft.com" class="text-slate-300 hover:text-white transition-colors">GeorgeClark@CelixLtd.onmicrosoft.com</a>
-                                    </div>
-                                    <div class="flex items-center space-x-3">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-400" viewBox="0 0 20 20" fill="currentColor">
-                                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.518.759a11.037 11.037 0 006.158 6.158l.759-1.518a1 1 0 011.06-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                                        </svg>
-                                        <span class="text-slate-300">07387 426517</span>
-                                    </div>
+                                <div class="space-y-6">
+
+                                    <a href="tel:07387426517" class="flex items-center space-x-4 group">
+                                        <div
+                                            class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-white/5 group-hover:bg-white/10 group-hover:scale-105 transition-all duration-300">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white"
+                                                viewBox="0 0 20 20" fill="currentColor">
+                                                <path
+                                                    d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.518.759a11.037 11.037 0 006.158 6.158l.759-1.518a1 1 0 011.06-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                                            </svg>
+                                        </div>
+                                        <span class="light-text group-hover:text-white transition-colors text-lg">07387
+                                            426517</span>
+                                    </a>
                                 </div>
                             </div>
-                
+
                             <!-- Contact Form -->
-                            <div class="placeholder-card rounded-2xl p-8">
+                            <div class="md:col-span-3 apple-card p-8 md:p-10">
                                 <form id="contactForm">
                                     <input type="hidden" name="access_key" value="6d5a403b-d26f-4409-9ef5-2a6310034a92">
-                                    <div class="form-group">
-                                        <label for="name">Your Name</label>
-                                        <input type="text" id="name" name="name" required placeholder="e.g., Jane Doe">
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                                        <div>
+                                            <label for="name"
+                                                class="block text-sm font-medium text-[#86868b] mb-2">Name</label>
+                                            <input type="text" id="name" name="name" class="apple-input"
+                                                placeholder="Your Name" required>
+                                        </div>
+                                        <div>
+                                            <label for="email"
+                                                class="block text-sm font-medium text-[#86868b] mb-2">Email</label>
+                                            <input type="email" id="email" name="email" class="apple-input"
+                                                placeholder="your@email.com" required>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="email">Your Email</label>
-                                        <input type="email" id="email" name="email" required placeholder="e.g., jane.doe@example.com">
+                                    <div class="mb-8">
+                                        <label for="message"
+                                            class="block text-sm font-medium text-[#86868b] mb-2">Message</label>
+                                        <textarea id="message" name="message" rows="4" class="apple-input resize-none"
+                                            placeholder="How can we help?" required></textarea>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="message">Message</label>
-                                        <textarea id="message" name="message" rows="4" required placeholder="Your message here..."></textarea>
-                                    </div>
-                                    <div id="form-status" class="text-center mb-4 h-5 transition-all"></div>
-                                    <button type="submit" class="w-full text-white px-5 py-3 rounded-lg font-semibold clean-button">Send Message</button>
+                                    <div id="form-status" class="text-center mb-4 h-5 text-sm transition-all"></div>
+                                    <button type="submit"
+                                        class="w-full text-black bg-[#f5f5f7] hover:bg-white transition-all duration-300 py-3 rounded-full font-medium hover:scale-[1.02]">Send
+                                        Message</button>
                                 </form>
                             </div>
                         </div>
@@ -331,49 +461,60 @@
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-slate-800 bg-[#050505]">
-        <div class="container mx-auto px-6 py-8 text-center text-slate-500">
-            <!-- UPDATED FOOTER -->
-            <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-4">
-                <a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a>
-                <a href="tos.html" class="hover:text-white transition-colors">Terms of Service</a>
-                <a href="delete-data.html" classs="hover:text-white transition-colors">Data Deletion</a>
+    <footer class="border-t border-white/10 bg-black">
+        <div class="container mx-auto px-6 py-10">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="light-text text-sm">
+                    &copy; 2025 Celix. All rights reserved.
+                </div>
+                <div class="flex gap-6 text-sm">
+                    <a href="privacy.html" class="light-text hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="tos.html" class="light-text hover:text-white transition-colors">Terms of Service</a>
+                    <a href="delete-data.html" class="light-text hover:text-white transition-colors">Data Deletion</a>
+                </div>
             </div>
-            <p>&copy; 2025 Celix. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        // Main script for all animations
         document.addEventListener('DOMContentLoaded', () => {
             const mainTitle = document.getElementById('main-title');
             const navTitle = document.getElementById('nav-title');
             const header = document.getElementById('header');
 
-            // --- Title Scroll Animation ---
+            // --- Original Title Scroll Animation directly mapped to scroll for no jank ---
             window.addEventListener('scroll', () => {
                 const scrollY = window.scrollY;
                 const vh = window.innerHeight;
 
+                // Only animate within the first viewport height
                 if (scrollY < vh) {
-                    // We are in the scroll area for the title
-                    const scale = Math.max(0.1, 1 - (scrollY / vh) * 0.9); // Scale down to 10%
-                    const opacity = Math.max(0, 1 - (scrollY / vh) * 1.5); // Fade out faster
+                    const progress = scrollY / vh;
+                    const scale = Math.max(0.1, 1 - progress * 0.9);
+                    const opacity = Math.max(0, 1 - progress * 1.5);
+
                     mainTitle.style.transform = `scale(${scale})`;
                     mainTitle.style.opacity = opacity;
-                    navTitle.style.opacity = 0;
+
+                    if (progress > 0.8) {
+                        navTitle.style.opacity = (progress - 0.8) * 5; // Fade in quickly at the end
+                    } else {
+                        navTitle.style.opacity = 0;
+                    }
+
                     header.style.backgroundColor = 'transparent';
                     header.style.backdropFilter = 'none';
-
+                    header.style.borderBottom = '1px solid transparent';
                 } else {
-                    // Scrolled past the title area
                     mainTitle.style.transform = 'scale(0.1)';
                     mainTitle.style.opacity = 0;
                     navTitle.style.opacity = 1;
+
                     header.style.backgroundColor = 'rgba(5, 5, 5, 0.7)';
                     header.style.backdropFilter = 'blur(10px)';
+                    header.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
                 }
-            });
+            }, { passive: true }); // passive true for smoother native scrolling
 
             // --- Mobile Menu Toggle ---
             const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -382,19 +523,13 @@
                 mobileMenu.classList.toggle('hidden');
             });
 
-            /**
-             * Sets up the contact form submission using Web3Forms.
-             * Handles form data, sends it to the API endpoint, and displays status messages.
-             */
+            // --- Contact Form ---
             function initContactForm() {
                 const contactForm = document.getElementById('contactForm');
                 const formStatus = document.getElementById('form-status');
-                if (!contactForm || !formStatus) {
-                    console.warn("Contact form or status element not found. Skipping form setup.");
-                    return;
-                }
+                if (!contactForm || !formStatus) return;
 
-                contactForm.addEventListener('submit', function(event) {
+                contactForm.addEventListener('submit', function (event) {
                     event.preventDefault();
 
                     const submitButton = contactForm.querySelector('button[type="submit"]');
@@ -402,16 +537,13 @@
                     submitButton.textContent = 'Sending...';
                     submitButton.disabled = true;
                     formStatus.textContent = '';
-                    formStatus.style.color = 'inherit';
 
                     const formData = new FormData(contactForm);
                     const formObject = {};
                     formData.forEach((value, key) => { formObject[key] = value });
                     const jsonRequestBody = JSON.stringify(formObject);
 
-                    const endpointURL = 'https://api.web3forms.com/submit';
-
-                    fetch(endpointURL, {
+                    fetch('https://api.web3forms.com/submit', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -419,37 +551,32 @@
                         },
                         body: jsonRequestBody
                     })
-                    .then(async (response) => {
-                        let jsonResponse = await response.json();
-                        if (response.ok && jsonResponse.success) {
-                            formStatus.textContent = jsonResponse.message || "Message sent successfully!";
-                            formStatus.style.color = '#4ade80'; // text-green-400
-                            contactForm.reset();
-                            setTimeout(() => { formStatus.textContent = ''; }, 5000);
-                        } else {
-                            console.error('Web3Forms submission error:', jsonResponse);
-                            formStatus.textContent = jsonResponse.message || "An error occurred sending the message.";
-                            formStatus.style.color = '#f87171'; // text-red-400
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Form submission fetch error:', error);
-                        formStatus.textContent = 'Could not send message. Please check your network connection.';
-                        formStatus.style.color = '#f87171';
-                    })
-                    .finally(() => {
-                        submitButton.textContent = originalButtonText;
-                        submitButton.disabled = false;
-                    });
+                        .then(async (response) => {
+                            let jsonResponse = await response.json();
+                            if (response.ok && jsonResponse.success) {
+                                formStatus.textContent = jsonResponse.message || "Message sent successfully!";
+                                formStatus.style.color = '#34d399';
+                                contactForm.reset();
+                                setTimeout(() => { formStatus.textContent = ''; }, 5000);
+                            } else {
+                                formStatus.textContent = jsonResponse.message || "An error occurred.";
+                                formStatus.style.color = '#f87171';
+                            }
+                        })
+                        .catch(error => {
+                            formStatus.textContent = 'Network error. Please try again.';
+                            formStatus.style.color = '#f87171';
+                        })
+                        .finally(() => {
+                            submitButton.textContent = originalButtonText;
+                            submitButton.disabled = false;
+                        });
                 });
             }
 
-            // Initialize the contact form logic
             initContactForm();
         });
     </script>
 </body>
+
 </html>
-
-
-
