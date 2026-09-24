@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aria — Celix</title>
+    <meta name="description" content="Aria answers the shop phone for UK local businesses. She takes the order and puts callers through to staff when a person is needed.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../site.css">
+</head>
+
+<body>
+    <div class="backdrop">
+        <div class="shape one"></div>
+        <div class="shape two"></div>
+        <div class="shape three"></div>
+        <div class="shape four"></div>
+        <div class="shape five"></div>
+        <div class="shape six"></div>
+    </div>
+
+    <header class="fixed top-0 left-0 w-full z-50" id="header" style="background-color: rgba(5, 5, 5, 0.7); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="../" class="text-2xl font-medium text-white tracking-tight">Celix</a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="../#mission" class="light-text hover:text-white transition-colors duration-300">Mission</a>
+                <a href="../#products" class="text-white transition-colors duration-300">Products</a>
+                <a href="../#services" class="light-text hover:text-white transition-colors duration-300">Services</a>
+                <a href="../#contact" class="apple-button px-5 py-2">Contact</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-white" aria-label="Open menu">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-black/70 backdrop-blur-xl absolute w-full left-0 border-b border-white/5">
+            <a href="../#mission" class="block light-text hover:text-white transition-colors duration-300 px-6 py-4 text-lg border-b border-white/5">Mission</a>
+            <a href="../#products" class="block text-white px-6 py-4 text-lg border-b border-white/5">Products</a>
+            <a href="../#services" class="block light-text hover:text-white transition-colors duration-300 px-6 py-4 text-lg border-b border-white/5">Services</a>
+            <div class="p-6">
+                <a href="../#contact" class="block apple-button text-center py-3 w-full text-lg">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="relative z-10 pt-28 pb-24">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <section class="py-12 md:py-20 max-w-3xl">
+                <p class="light-text mb-4 flex items-center gap-3"><span class="mark aria" aria-hidden="true"></span> Product</p>
+                <h1 class="text-5xl md:text-7xl section-title text-white mb-6">Aria</h1>
+                <p class="text-xl md:text-2xl light-text leading-relaxed">She answers the shop phone as if she works there.</p>
+                <div class="flex flex-wrap gap-3 mt-8">
+                    <a href="https://aria.celix.uk" class="apple-button px-6 py-3">Open Aria</a>
+                    <a href="https://aria.celix.uk/demo" class="apple-button-secondary px-6 py-3">Try a live call</a>
+                </div>
+            </section>
+
+            <section class="pb-8">
+                <div class="apple-card apple-card-active p-8 md:p-12">
+                    <p class="light-text text-sm mb-6">On the phone</p>
+                    <p class="text-white text-lg md:text-xl leading-relaxed mb-4"><span class="light-text">Caller.</span> Can I get a margherita for collection?</p>
+                    <p class="text-white text-lg md:text-xl leading-relaxed"><span class="light-text">Aria.</span> Collection, margherita. That's £11. Ready in twenty minutes.</p>
+                </div>
+            </section>
+
+            <section class="py-16">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <article class="apple-card p-8">
+                        <p class="light-text text-sm mb-3">01</p>
+                        <h2 class="text-2xl card-title text-white mb-3">She learns the shop.</h2>
+                        <p class="light-text leading-relaxed">What you sell, when you are open, and the number customers already call.</p>
+                    </article>
+                    <article class="apple-card p-8">
+                        <p class="light-text text-sm mb-3">02</p>
+                        <h2 class="text-2xl card-title text-white mb-3">You stay in charge.</h2>
+                        <p class="light-text leading-relaxed">Change a price, mark something sold out, or pause Aria. The next call uses it.</p>
+                    </article>
+                    <article class="apple-card p-8">
+                        <p class="light-text text-sm mb-3">03</p>
+                        <h2 class="text-2xl card-title text-white mb-3">She answers first.</h2>
+                        <p class="light-text leading-relaxed">Say person, or press 0, and the caller reaches the team. The request lands on WhatsApp in the shop.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="pb-16">
+                <h2 class="text-3xl md:text-4xl section-title text-white mb-8">Shops she already speaks for</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <article class="apple-card p-8">
+                        <h3 class="text-xl card-title text-white mb-2">Restaurant and takeaway</h3>
+                        <p class="light-text leading-relaxed">The order, the extras, collection or delivery, then the total read back.</p>
+                    </article>
+                    <article class="apple-card p-8">
+                        <h3 class="text-xl card-title text-white mb-2">Salon and barber</h3>
+                        <p class="light-text leading-relaxed">Cut, colour, or nails, with a preferred stylist and a time. The salon confirms before it is booked.</p>
+                    </article>
+                    <article class="apple-card p-8">
+                        <h3 class="text-xl card-title text-white mb-2">Reservations and the counter</h3>
+                        <p class="light-text leading-relaxed">How many people, which day, and what time. A deli preorder works the same way. Allergy questions go to a person.</p>
+                    </article>
+                    <article class="apple-card p-8">
+                        <h3 class="text-xl card-title text-white mb-2">Everyone else</h3>
+                        <p class="light-text leading-relaxed">Opening times, the questions you get every day, and a clear message for the team.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section>
+                <div class="apple-card p-8 md:p-12">
+                    <h2 class="text-3xl section-title text-white mb-3">Aria on celix.uk</h2>
+                    <p class="light-text text-lg leading-relaxed max-w-3xl">This page is Aria on the Celix site. The shop dashboard, the demo, and the order links live at aria.celix.uk. The phone line is a separate address, line.celix.uk, because a call stays open for the whole conversation.</p>
+                    <div class="flex flex-wrap gap-3 mt-8">
+                        <a href="https://aria.celix.uk" class="apple-button px-6 py-3">Open Aria</a>
+                        <a href="../brian/" class="apple-button-secondary px-6 py-3">See Brian</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="border-t border-white/10 bg-black relative z-10">
+        <div class="container mx-auto px-6 py-10">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="light-text text-sm">&copy; 2026 Celix. All rights reserved.</div>
+                <div class="flex items-center gap-6 text-sm">
+                    <a href="../brian/" class="light-text hover:text-white transition-colors">Brian</a>
+                    <a href="../aria/" class="text-white">Aria</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("mobile-menu-button").addEventListener("click", () => {
+            document.getElementById("mobile-menu").classList.toggle("hidden");
+        });
+    </script>
+</body>
+
+</html>

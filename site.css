@@ -1,0 +1,306 @@
+body {
+            /* Clean, modern font stack prioritizing Apple's native typography */
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, "Inter", sans-serif;
+            background-color: #000000;
+            color: #f5f5f7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* --- Original Animated Backdrop --- */
+        .backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #1a001a;
+            /* The filter creates the soft, blended look */
+            filter: blur(3vw) contrast(200%) saturate(150%) brightness(0.6);
+            z-index: -1;
+        }
+
+        .backdrop .shape {
+            position: absolute;
+            aspect-ratio: 1/1;
+            border-radius: 100%;
+        }
+
+        .backdrop .shape.one {
+            width: 40svw;
+            background: rgba(153, 255, 204, 0.5);
+            animation: shape-one 12s ease-in-out infinite alternate;
+            animation-delay: -2s;
+        }
+
+        .backdrop .shape.two {
+            width: 25lvw;
+            background: rgba(255, 221, 153, 0.5);
+            animation: shape-two 8s ease-in-out infinite alternate;
+            animation-delay: -1s;
+        }
+
+        .backdrop .shape.three {
+            width: 32svw;
+            background: rgba(153, 238, 255, 0.5);
+            animation: shape-three 10s ease-in-out infinite alternate;
+            animation-delay: -3.5s;
+        }
+
+        .backdrop .shape.four {
+            width: 37svw;
+            background: rgba(255, 153, 179, 0.5);
+            animation: shape-four 11s ease-in-out infinite alternate;
+            animation-delay: -0.4s;
+        }
+
+        .backdrop .shape.five {
+            width: 24svw;
+            background: rgba(153, 247, 255, 0.5);
+            animation: shape-five 14s ease-in-out infinite alternate;
+            animation-delay: -7.4s;
+        }
+
+        .backdrop .shape.six {
+            width: 28svw;
+            background: rgba(240, 168, 192, 0.5);
+            animation: shape-six 15s ease-in-out infinite alternate;
+            animation-delay: -5s;
+        }
+
+        /* Sticky container for the main title scroll effect */
+        .title-container {
+            height: 200vh;
+        }
+
+        .sticky-title {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* The main content area that scrolls over the title */
+        .content-area {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Typography specific to title elements */
+        #main-title,
+        #nav-title {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Thin, elegant main component mimicking Apple's presentation */
+        #main-title {
+            font-weight: 300;
+            /* Thin look */
+            letter-spacing: -0.05em;
+            /* Tight tracking */
+            will-change: transform, opacity;
+            transform-origin: center center;
+            color: #ffffff;
+        }
+
+        /* Clean Glass Cards */
+        .apple-card {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 24px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .apple-card:hover, .apple-card-active {
+            transform: scale(1.02);
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Clean Form Input */
+        .apple-input {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 0.875rem 1rem;
+            color: #ffffff;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .apple-input:focus {
+            outline: none;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-color: rgba(129, 140, 248, 0.5);
+            box-shadow: 0 0 0 4px rgba(129, 140, 248, 0.15);
+        }
+
+        /* New clean button style */
+        .apple-button {
+            background-color: #f5f5f7;
+            color: #000000;
+            border-radius: 980px;
+            /* Pill shape */
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .apple-button:hover {
+            background-color: #ffffff;
+            transform: scale(1.02);
+        }
+
+        .apple-button-secondary {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border-radius: 980px;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.2s ease;
+        }
+
+        .apple-button-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            transform: scale(1.02);
+        }
+
+        /* Prevent header border flashing on first scroll by initializing the border */
+        #header {
+            border-bottom: 1px solid transparent;
+        }
+
+        /* --- Keyframe Animations for Shapes (Original) --- */
+        @keyframes shape-one {
+            from {
+                transform: rotate(90deg) translate(45lvh, 5lvw);
+            }
+
+            50% {
+                transform: rotate(100deg) translate(-10lvh, -15lvw);
+            }
+
+            to {
+                transform: rotate(120deg) translate(-20lvh, 10lvw);
+            }
+        }
+
+        @keyframes shape-two {
+            from {
+                transform: rotate(200deg) translate(-35lvh, 12lvw);
+            }
+
+            to {
+                transform: rotate(280deg) translate(-25lvh, -5lvw);
+            }
+        }
+
+        @keyframes shape-three {
+            from {
+                transform: rotate(-165deg) translate(24lvh, -32lvw);
+            }
+
+            50% {
+                transform: rotate(-140deg) translate(5lvh, 10lvw);
+            }
+
+            to {
+                transform: rotate(-100deg) translate(10lvh, -20lvw);
+            }
+        }
+
+        @keyframes shape-four {
+            from {
+                transform: rotate(-55deg) translate(30lvh, 26lvw);
+            }
+
+            to {
+                transform: rotate(-90deg) translate(40lvh, 10lvw);
+            }
+        }
+
+        @keyframes shape-five {
+            from {
+                transform: rotate(120deg) translate(-40lvh, 46lvw);
+            }
+
+            to {
+                transform: rotate(95deg) translate(52lvh, -30lvw);
+            }
+        }
+
+        @keyframes shape-six {
+            from {
+                transform: rotate(25deg) translate(-16lvh, -19lvw);
+            }
+
+            to {
+                transform: rotate(-20deg) translate(20lvh, 10lvw);
+            }
+        }
+
+        /* Typography sizing for the cards */
+        .section-title {
+            font-weight: 500;
+            letter-spacing: -0.02em;
+        }
+
+        .card-title {
+            font-weight: 500;
+            letter-spacing: -0.01em;
+        }
+
+        .light-text {
+            color: #86868b;
+            font-weight: 400;
+        }
+
+        .mark {
+            width: 10px;
+            height: 10px;
+            border-radius: 99px;
+            flex-shrink: 0;
+        }
+
+        .mark.brian {
+            background: #00ff88;
+            box-shadow: 0 0 12px rgba(0, 255, 136, 0.55);
+        }
+
+        .mark.aria {
+            background: #e07a3d;
+            box-shadow: 0 0 12px rgba(224, 122, 61, 0.45);
+        }
+
+        a.apple-card {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .capture {
+            font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+            font-size: 0.95rem;
+            letter-spacing: -0.01em;
+        }
+
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border-radius: 999px;
+            padding: 0.45rem 0.8rem;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #f5f5f7;
+            font-size: 0.9rem;
+        }

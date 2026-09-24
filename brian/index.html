@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brian — Celix</title>
+    <meta name="description" content="Brian is the notes app where you never have to decide what kind of note it is. One line in. The filing gets done.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../site.css">
+</head>
+
+<body>
+    <div class="backdrop">
+        <div class="shape one"></div>
+        <div class="shape two"></div>
+        <div class="shape three"></div>
+        <div class="shape four"></div>
+        <div class="shape five"></div>
+        <div class="shape six"></div>
+    </div>
+
+    <header class="fixed top-0 left-0 w-full z-50" id="header" style="background-color: rgba(5, 5, 5, 0.7); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="../" class="text-2xl font-medium text-white tracking-tight">Celix</a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="../#mission" class="light-text hover:text-white transition-colors duration-300">Mission</a>
+                <a href="../#products" class="text-white transition-colors duration-300">Products</a>
+                <a href="../#services" class="light-text hover:text-white transition-colors duration-300">Services</a>
+                <a href="../#contact" class="apple-button px-5 py-2">Contact</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-white" aria-label="Open menu">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-black/70 backdrop-blur-xl absolute w-full left-0 border-b border-white/5">
+            <a href="../#mission" class="block light-text hover:text-white transition-colors duration-300 px-6 py-4 text-lg border-b border-white/5">Mission</a>
+            <a href="../#products" class="block text-white px-6 py-4 text-lg border-b border-white/5">Products</a>
+            <a href="../#services" class="block light-text hover:text-white transition-colors duration-300 px-6 py-4 text-lg border-b border-white/5">Services</a>
+            <div class="p-6">
+                <a href="../#contact" class="block apple-button text-center py-3 w-full text-lg">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="relative z-10 pt-28 pb-24">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <section class="py-12 md:py-20 max-w-3xl">
+                <p class="light-text mb-4 flex items-center gap-3"><span class="mark brian" aria-hidden="true"></span> Product</p>
+                <h1 class="text-5xl md:text-7xl section-title text-white mb-6">Brian</h1>
+                <p class="text-xl md:text-2xl light-text leading-relaxed">The notes app where you never have to decide what kind of note it is.</p>
+            </section>
+
+            <section class="pb-8">
+                <div class="apple-card apple-card-active p-8 md:p-12">
+                    <p class="light-text text-sm mb-4">One line</p>
+                    <p class="capture text-white text-lg md:text-xl leading-relaxed">gym at 7 tomorrow and I still haven't emailed the landlord</p>
+                    <div class="flex flex-wrap gap-3 mt-8">
+                        <span class="chip"><span class="mark brian" aria-hidden="true"></span> Task · 07:00</span>
+                        <span class="chip">Task · email the landlord</span>
+                        <span class="chip">On the timeline</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="py-16">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <article class="apple-card p-8">
+                        <h2 class="text-2xl card-title text-white mb-3">You type. That's the whole decision.</h2>
+                        <p class="light-text leading-relaxed">Other tools make you pick a list, a tag, or a file before you write. Brian charges nothing at the moment you capture.</p>
+                    </article>
+                    <article class="apple-card p-8">
+                        <h2 class="text-2xl card-title text-white mb-3">The filing happens after.</h2>
+                        <p class="light-text leading-relaxed">A task with a time, a number to track, something to watch, or just a thought. The day, the projects, and the habits come out of lines you would have typed anyway.</p>
+                    </article>
+                    <article class="apple-card p-8">
+                        <h2 class="text-2xl card-title text-white mb-3">It stays yours.</h2>
+                        <p class="light-text leading-relaxed">The database is a file on the device. You can export the whole thing. You choose the model, including one that runs on the phone.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="pb-8">
+                <div class="apple-card p-8 md:p-12 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+                    <div>
+                        <h2 class="text-3xl section-title text-white mb-3">A Celix product.</h2>
+                        <p class="light-text text-lg leading-relaxed max-w-xl">Brian is the personal app. Aria is the one that answers the shop phone.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <a href="../aria/" class="apple-button px-6 py-3">See Aria</a>
+                        <a href="../#contact" class="apple-button-secondary px-6 py-3">Contact</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="border-t border-white/10 bg-black relative z-10">
+        <div class="container mx-auto px-6 py-10">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="light-text text-sm">&copy; 2026 Celix. All rights reserved.</div>
+                <div class="flex items-center gap-6 text-sm">
+                    <a href="../brian/" class="text-white">Brian</a>
+                    <a href="../aria/" class="light-text hover:text-white transition-colors">Aria</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("mobile-menu-button").addEventListener("click", () => {
+            document.getElementById("mobile-menu").classList.toggle("hidden");
+        });
+    </script>
+</body>
+
+</html>
