@@ -3,16 +3,20 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Brian — Celix</title>
     <meta name="description" content="Brian is the notes app where you never have to decide what kind of note it is. One line in. The filing gets done.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#000000">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Inter+Tight:wght@500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../site.css">
 </head>
 
-<body>
-    <div class="backdrop">
+<body class="page-brian">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="backdrop" aria-hidden="true">
         <div class="shape one"></div>
         <div class="shape two"></div>
         <div class="shape three"></div>
@@ -21,99 +25,174 @@
         <div class="shape six"></div>
     </div>
 
-    <header class="fixed top-0 left-0 w-full z-50" id="header" style="background-color: rgba(5, 5, 5, 0.7); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05);">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="../" class="text-2xl font-medium text-white tracking-tight">Celix</a>
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="../#mission" class="light-text hover:text-white transition-colors duration-300">Mission</a>
-                <a href="../#products" class="text-white transition-colors duration-300">Products</a>
-                <a href="../#services" class="light-text hover:text-white transition-colors duration-300">Services</a>
-                <a href="../#contact" class="apple-button px-5 py-2">Contact</a>
-            </div>
-            <button id="mobile-menu-button" class="md:hidden text-white" aria-label="Open menu">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                </svg>
-            </button>
-        </nav>
-        <div id="mobile-menu" class="hidden md:hidden bg-black/70 backdrop-blur-xl absolute w-full left-0 border-b border-white/5">
-            <a href="../#mission" class="block light-text hover:text-white transition-colors duration-300 px-6 py-4 text-lg border-b border-white/5">Mission</a>
-            <a href="../#products" class="block text-white px-6 py-4 text-lg border-b border-white/5">Products</a>
-            <a href="../#services" class="block light-text hover:text-white transition-colors duration-300 px-6 py-4 text-lg border-b border-white/5">Services</a>
-            <div class="p-6">
-                <a href="../#contact" class="block apple-button text-center py-3 w-full text-lg">Contact</a>
+    <div class="scroll-edge" aria-hidden="true"></div>
+
+    <header class="site-header" id="header">
+        <div class="wrap">
+            <nav class="nav glass glass--clear" aria-label="Main">
+                <a href="../" class="nav__brand">Celix</a>
+                <div class="nav__links">
+                    <a href="../#mission">Mission</a>
+                    <a href="../#products" aria-current="true">Products</a>
+                    <a href="../#services">Services</a>
+                </div>
+                <a href="../#contact" class="btn btn--primary btn--sm">Contact</a>
+                <button class="nav__toggle" id="menu-toggle" aria-expanded="false" aria-controls="mobile-menu">
+                    <span class="bars" aria-hidden="true"></span><span class="sr-only">Menu</span>
+                </button>
+            </nav>
+            <div class="nav__menu glass" id="mobile-menu" hidden>
+                <a href="../#mission">Mission</a>
+                <a href="../#products">Products</a>
+                <a href="../#services">Services</a>
+                <a href="../#contact" class="btn btn--primary btn--block">Contact</a>
             </div>
         </div>
     </header>
 
-    <main class="relative z-10 pt-28 pb-24">
-        <div class="container mx-auto px-6 max-w-6xl">
-            <section class="py-12 md:py-20 max-w-3xl">
-                <p class="light-text mb-4 flex items-center gap-3"><span class="mark brian" aria-hidden="true"></span> Product</p>
-                <h1 class="text-5xl md:text-7xl section-title text-white mb-6">Brian</h1>
-                <p class="text-xl md:text-2xl light-text leading-relaxed">The notes app where you never have to decide what kind of note it is.</p>
-            </section>
-
-            <section class="pb-8">
-                <div class="apple-card apple-card-active p-8 md:p-12">
-                    <p class="light-text text-sm mb-4">One line</p>
-                    <p class="capture text-white text-lg md:text-xl leading-relaxed">gym at 7 tomorrow and I still haven't emailed the landlord</p>
-                    <div class="flex flex-wrap gap-3 mt-8">
-                        <span class="chip"><span class="mark brian" aria-hidden="true"></span> Task · 07:00</span>
-                        <span class="chip">Task · email the landlord</span>
-                        <span class="chip">On the timeline</span>
+    <main id="main">
+        <div class="wrap">
+            <section class="p-hero">
+                <div class="p-hero__copy" data-reveal>
+                    <p class="eyebrow"><span class="dot dot--brian" aria-hidden="true"></span> A Celix product</p>
+                    <h1 class="h-display">Brian</h1>
+                    <p class="lede">The notes app where you never have to decide what kind of note it is.</p>
+                    <div class="actions">
+                        <a href="#how" class="btn btn--primary">How it works</a>
+                        <a href="../#contact" class="btn glass glass--clear">Get in touch</a>
                     </div>
                 </div>
+
+                <figure class="demo glass" data-reveal style="--d: 0.1s" aria-label="Example: one line typed into Brian, then filed">
+                    <div class="demo__screen">
+                        <div class="demo__bar">
+                            <span class="dot dot--brian" aria-hidden="true"></span>
+                            <span>Capture</span>
+                            <span class="spacer">One line</span>
+                        </div>
+                        <div class="capture"><span id="brian-text">gym at 7 tomorrow and I still haven't emailed the landlord</span><span class="caret" aria-hidden="true"></span></div>
+                        <p class="demo__label">Filed</p>
+                        <div class="filed" id="brian-filed">
+                            <div class="filed__row"><span class="tag tag--task">Task</span><span class="filed__what">Gym</span><span class="filed__meta">Tomorrow · 07:00</span></div>
+                            <div class="filed__row"><span class="tag tag--task">Task</span><span class="filed__what">Email the landlord</span><span class="filed__meta">Open</span></div>
+                            <div class="filed__row"><span class="tag tag--timeline">Timeline</span><span class="filed__what">Added to tomorrow</span><span class="filed__meta">2 items</span></div>
+                        </div>
+                    </div>
+                </figure>
             </section>
 
-            <section class="py-16">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <article class="apple-card p-8">
-                        <h2 class="text-2xl card-title text-white mb-3">You type. That's the whole decision.</h2>
-                        <p class="light-text leading-relaxed">Other tools make you pick a list, a tag, or a file before you write. Brian charges nothing at the moment you capture.</p>
+            <section class="section" id="how">
+                <div class="section-head" data-reveal>
+                    <p class="eyebrow">How it works</p>
+                    <h2 class="h-section">One line in. The filing gets done.</h2>
+                </div>
+                <div class="grid grid-3">
+                    <article class="card glass" data-reveal>
+                        <span class="num">01</span>
+                        <h3 class="h-card">You type. That's the whole decision.</h3>
+                        <p class="body">Other tools make you pick a list, a tag, or a file before you write. Brian charges nothing at the moment you capture.</p>
                     </article>
-                    <article class="apple-card p-8">
-                        <h2 class="text-2xl card-title text-white mb-3">The filing happens after.</h2>
-                        <p class="light-text leading-relaxed">A task with a time, a number to track, something to watch, or just a thought. The day, the projects, and the habits come out of lines you would have typed anyway.</p>
+                    <article class="card glass" data-reveal style="--d: 0.06s">
+                        <span class="num">02</span>
+                        <h3 class="h-card">The filing happens after.</h3>
+                        <p class="body">A task with a time, a number to track, something to watch, or just a thought. The day, the projects, and the habits come out of lines you would have typed anyway.</p>
                     </article>
-                    <article class="apple-card p-8">
-                        <h2 class="text-2xl card-title text-white mb-3">It stays yours.</h2>
-                        <p class="light-text leading-relaxed">The database is a file on the device. You can export the whole thing. You choose the model, including one that runs on the phone.</p>
+                    <article class="card glass" data-reveal style="--d: 0.12s">
+                        <span class="num">03</span>
+                        <h3 class="h-card">It stays yours.</h3>
+                        <p class="body">The database is a file on the device. You can export the whole thing. You choose the model, including one that runs on the phone.</p>
                     </article>
                 </div>
             </section>
 
-            <section class="pb-8">
-                <div class="apple-card p-8 md:p-12 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+            <section class="section">
+                <div class="outro glass" data-reveal>
                     <div>
-                        <h2 class="text-3xl section-title text-white mb-3">A Celix product.</h2>
-                        <p class="light-text text-lg leading-relaxed max-w-xl">Brian is the personal app. Aria is the one that answers the shop phone.</p>
+                        <h2 class="h-section">A Celix product.</h2>
+                        <p class="body">Brian is the personal app. Aria is the one that answers the shop phone.</p>
                     </div>
-                    <div class="flex flex-wrap gap-3">
-                        <a href="../aria/" class="apple-button px-6 py-3">See Aria</a>
-                        <a href="../#contact" class="apple-button-secondary px-6 py-3">Contact</a>
+                    <div class="actions">
+                        <a href="../aria/" class="btn btn--primary">See Aria <span class="arrow" aria-hidden="true">→</span></a>
+                        <a href="../#contact" class="btn glass glass--clear">Contact</a>
                     </div>
                 </div>
             </section>
         </div>
     </main>
 
-    <footer class="border-t border-white/10 bg-black relative z-10">
-        <div class="container mx-auto px-6 py-10">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                <div class="light-text text-sm">&copy; 2026 Celix. All rights reserved.</div>
-                <div class="flex items-center gap-6 text-sm">
-                    <a href="../brian/" class="text-white">Brian</a>
-                    <a href="../aria/" class="light-text hover:text-white transition-colors">Aria</a>
-                </div>
-            </div>
+    <footer class="site-footer">
+        <div class="wrap">
+            <span>&copy; <span data-year>2026</span> Celix. All rights reserved.</span>
+            <nav aria-label="Footer">
+                <a href="../#mission">Mission</a>
+                <a href="../#services">Services</a>
+                <a href="../brian/" aria-current="page">Brian</a>
+                <a href="../aria/">Aria</a>
+                <a href="../#contact">Contact</a>
+            </nav>
         </div>
     </footer>
 
+    <script src="../site.js"></script>
     <script>
-        document.getElementById("mobile-menu-button").addEventListener("click", () => {
-            document.getElementById("mobile-menu").classList.toggle("hidden");
-        });
+        // Capture demo: type a line, then show how Brian files it.
+        (() => {
+            const text = document.getElementById('brian-text');
+            const filed = document.getElementById('brian-filed');
+            if (!text || !filed || window.Celix.reduceMotion.matches) return;
+
+            const examples = [
+                { line: "gym at 7 tomorrow and I still haven't emailed the landlord", rows: [
+                    ['task', 'Task', 'Gym', 'Tomorrow · 07:00'],
+                    ['task', 'Task', 'Email the landlord', 'Open'],
+                    ['timeline', 'Timeline', 'Added to tomorrow', '2 items'],
+                ] },
+                { line: 'lunch with sam £14.50', rows: [
+                    ['number', 'Number', '£14.50', 'Spending'],
+                    ['timeline', 'Timeline', 'Lunch with Sam', 'Today'],
+                ] },
+                { line: 'keep an eye on flights to lisbon, under £80 would be good', rows: [
+                    ['watch', 'Watch', 'Flights to Lisbon', 'Under £80'],
+                ] },
+                { line: 'what if the week started on the projects page', rows: [
+                    ['thought', 'Thought', 'Week starts on projects?', 'Kept'],
+                ] },
+            ];
+
+            const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+            const row = ([kind, label, what, meta]) => {
+                const el = document.createElement('div');
+                el.className = 'filed__row enter';
+                el.innerHTML = `<span class="tag tag--${kind}">${label}</span><span class="filed__what"></span><span class="filed__meta"></span>`;
+                el.querySelector('.filed__what').textContent = what;
+                el.querySelector('.filed__meta').textContent = meta;
+                return el;
+            };
+
+            // Only run while the demo is on screen.
+            let visible = false;
+            new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(text);
+            const whenVisible = async () => { while (!visible || document.hidden) await wait(300); };
+
+            (async () => {
+                await wait(2600);
+                for (let i = 1; ; i = (i + 1) % examples.length) {
+                    await whenVisible();
+                    const ex = examples[i];
+                    filed.style.transition = 'opacity .3s';
+                    filed.style.opacity = '0';
+                    for (let n = text.textContent.length; n > 0; n -= 3) { text.textContent = text.textContent.slice(0, n - 3); await wait(12); }
+                    text.textContent = '';
+                    filed.replaceChildren();
+                    filed.style.opacity = '1';
+                    await wait(300);
+                    for (const ch of ex.line) { text.textContent += ch; await wait(28 + Math.random() * 40); }
+                    await wait(450);
+                    for (const r of ex.rows) { filed.appendChild(row(r)); await wait(160); }
+                    await wait(3200);
+                }
+            })();
+        })();
     </script>
 </body>
 

@@ -3,17 +3,20 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Celix — Contract software development</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <meta name="description" content="Celix builds software under contract and ships its own products: Brian, the notes app that files itself, and Aria, who answers the shop phone.">
+    <meta name="theme-color" content="#000000">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Inter+Tight:wght@500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="site.css">
 </head>
 
-<body>
+<body class="has-hero">
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- CSS Animated Backdrop (Restored to original) -->
-    <div class="backdrop">
+    <div class="backdrop" aria-hidden="true">
         <div class="shape one"></div>
         <div class="shape two"></div>
         <div class="shape three"></div>
@@ -22,365 +25,282 @@
         <div class="shape six"></div>
     </div>
 
-    <!-- Header Navigation -->
-    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300" id="header">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <h1 id="nav-title"
-                class="text-2xl font-medium text-white tracking-tight opacity-0 transition-opacity duration-300">Celix
-            </h1>
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="#mission" class="light-text hover:text-white transition-colors duration-300">Mission</a>
-                <a href="#products" class="light-text hover:text-white transition-colors duration-300">Products</a>
-                <a href="#services" class="light-text hover:text-white transition-colors duration-300">Services</a>
-                <a href="#contact" class="apple-button px-5 py-2">Contact</a>
-            </div>
-            <button id="mobile-menu-button" class="md:hidden text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                </svg>
-            </button>
-        </nav>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu"
-            class="hidden md:hidden bg-black/70 backdrop-blur-xl absolute w-full left-0 border-b border-white/5">
-            <a href="#mission"
-                class="block light-text hover:text-white transition-colors duration-300 px-6 py-4 text-lg border-b border-white/5">Mission</a>
-            <a href="#products"
-                class="block light-text hover:text-white transition-colors duration-300 px-6 py-4 text-lg border-b border-white/5">Products</a>
-            <a href="#services"
-                class="block light-text hover:text-white transition-colors duration-300 px-6 py-4 text-lg border-b border-white/5">Services</a>
-            <div class="p-6">
-                <a href="#contact" class="block apple-button text-center py-3 w-full text-lg">Contact</a>
+    <div class="scroll-edge" aria-hidden="true"></div>
+
+    <header class="site-header" id="header">
+        <div class="wrap">
+            <nav class="nav glass glass--clear" aria-label="Main">
+                <a href="#top" class="nav__brand">Celix</a>
+                <div class="nav__links">
+                    <a href="#mission">Mission</a>
+                    <a href="#products">Products</a>
+                    <a href="#services">Services</a>
+                </div>
+                <a href="#contact" class="btn btn--primary btn--sm">Contact</a>
+                <button class="nav__toggle" id="menu-toggle" aria-expanded="false" aria-controls="mobile-menu">
+                    <span class="bars" aria-hidden="true"></span><span class="sr-only">Menu</span>
+                </button>
+            </nav>
+            <div class="nav__menu glass" id="mobile-menu" hidden>
+                <a href="#mission">Mission</a>
+                <a href="#products">Products</a>
+                <a href="#services">Services</a>
+                <a href="#contact" class="btn btn--primary btn--block">Contact</a>
             </div>
         </div>
     </header>
 
-    <main>
-        <!-- Section for the large scrolling title -->
-        <div class="title-container">
-            <div class="sticky-title">
-                <h1 id="main-title" class="text-7xl md:text-[14rem] text-center leading-none">
-                    Celix
-                </h1>
+    <main id="main">
+        <section class="hero" id="top" aria-label="Celix">
+            <div class="hero__sticky">
+                <h1 class="hero__title" id="hero-title">Celix</h1>
+                <p class="hero__sub" id="hero-sub">Contract software development &amp; products</p>
+                <span class="hero__cue" id="hero-cue" aria-hidden="true"></span>
             </div>
-        </div>
+        </section>
 
-        <!-- Main Content Area -->
-        <div class="content-area pt-16 md:pt-32 pb-32">
-            <div class="container mx-auto px-6 max-w-6xl">
-
-                <!-- Mission Section -->
-                <section id="mission" class="py-16">
-                    <div class="max-w-4xl mx-auto text-center">
-                        <h2 class="text-4xl md:text-5xl section-title text-white mb-8">Straightforward contracting.</h2>
-                        <div class="apple-card apple-card-active p-10 md:p-14">
-                            <p class="light-text text-xl md:text-2xl leading-relaxed text-left md:text-center">
-                                Celix is a technology business focused on consulting and contracting. Currently operated
-                                by a small team of student developers, with interests and skills spanning the whole
-                                sector we would be glad to contribute meaningfully to your project. We develop complete
-                                systems and seamlessly integrate features.
-                            </p>
-                        </div>
+        <!-- Mission -->
+        <section class="section" id="mission">
+            <div class="wrap">
+                <div class="mission glass" data-reveal>
+                    <div>
+                        <p class="eyebrow">Mission</p>
+                        <h2 class="h-section">Straightforward contracting.</h2>
                     </div>
-                </section>
-
-                <!-- Services Section -->
-                <section id="services" class="py-24">
-                    <div class="text-center mb-12">
-                        <h2 class="text-4xl md:text-5xl section-title text-white mb-6">What we do</h2>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-                        <div class="apple-card p-10 flex flex-col text-left">
-                            <h3 class="text-3xl card-title text-white mb-4">Contract engineering</h3>
-                            <p class="light-text text-lg flex-grow leading-relaxed">
-                                Deliver features and fixes against your roadmap: integrate with existing codebases,
-                                implement APIs and UIs, and harden production systems alongside your team.
-                            </p>
-                        </div>
-
-                        <div class="apple-card p-10 flex flex-col text-left">
-                            <h3 class="text-3xl card-title text-white mb-4">Greenfield builds</h3>
-                            <p class="light-text text-lg flex-grow leading-relaxed">
-                                Take ideas from sketch to MVP: internal tools, client-facing apps, and small products
-                                with clear milestones—owned by you, built by us.
-                            </p>
-                        </div>
-
-                        <div class="apple-card p-10 flex flex-col text-left">
-                            <h3 class="text-3xl card-title text-white mb-4">Consulting &amp; architecture</h3>
-                            <p class="light-text text-lg flex-grow leading-relaxed">
-                                Technical direction when you need it: reviews, spikes, stack choices, and pragmatic
-                                plans that match your constraints and timeline.
-                            </p>
-                        </div>
-
-                        <div class="apple-card p-10 flex flex-col text-left">
-                            <h3 class="text-3xl card-title text-white mb-4">Featured work</h3>
-                            <p class="light-text text-lg flex-grow leading-relaxed">
-                                A proof-of-concept voting system on Ethereum (C++), exploring decentralized and
-                                transparent voting—illustrative of our systems and blockchain work.
-                            </p>
-                            <div class="mt-8">
-                                <a href="https://github.com/UBERCOW123/Blockchain-Voting" target="_blank"
-                                    rel="noopener noreferrer" class="apple-button-secondary inline-block px-6 py-3">
-                                    View on GitHub
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h3 class="text-2xl md:text-3xl section-title text-white text-center mb-10 mt-16 md:mt-20">How a typical engagement runs</h3>
-                    <div class="apple-card apple-card-active p-8 md:p-12 w-full">
-                        <ol class="grid grid-cols-1 md:grid-cols-2 md:gap-x-12 md:gap-y-10 gap-8 list-none p-0 m-0">
-                            <li class="flex gap-4">
-                                <span class="shrink-0 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white text-sm font-medium">1</span>
-                                <div>
-                                    <span class="text-white text-xl card-title block mb-2">Brief</span>
-                                    <p class="light-text text-lg leading-snug">We align on goals, constraints, and what “done” means.</p>
-                                </div>
-                            </li>
-                            <li class="flex gap-4">
-                                <span class="shrink-0 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white text-sm font-medium">2</span>
-                                <div>
-                                    <span class="text-white text-xl card-title block mb-2">Scope &amp; estimate</span>
-                                    <p class="light-text text-lg leading-snug">We agree milestones, timeline, and how we’ll work together.</p>
-                                </div>
-                            </li>
-                            <li class="flex gap-4">
-                                <span class="shrink-0 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white text-sm font-medium">3</span>
-                                <div>
-                                    <span class="text-white text-xl card-title block mb-2">Build</span>
-                                    <p class="light-text text-lg leading-snug">Regular check-ins, incremental delivery, no mystery progress.</p>
-                                </div>
-                            </li>
-                            <li class="flex gap-4">
-                                <span class="shrink-0 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white text-sm font-medium">4</span>
-                                <div>
-                                    <span class="text-white text-xl card-title block mb-2">Handover</span>
-                                    <p class="light-text text-lg leading-snug">Docs, repo access, and a clean exit so your team can own it.</p>
-                                </div>
-                            </li>
-                        </ol>
-                    </div>
-                </section>
-
-                <!-- Products -->
-                <section id="products" class="py-24">
-                    <div class="text-center mb-12">
-                        <h2 class="text-4xl md:text-5xl section-title text-white mb-6">Products</h2>
-                        <p class="light-text text-lg md:text-xl max-w-2xl mx-auto">Two products from Celix. Brian keeps a life in order. Aria answers the shop phone.</p>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-                        <a href="brian/" class="apple-card p-10 flex flex-col text-left">
-                            <div class="flex items-center gap-3 mb-4">
-                                <span class="mark brian" aria-hidden="true"></span>
-                                <h3 class="text-3xl card-title text-white">Brian</h3>
-                            </div>
-                            <p class="light-text text-lg flex-grow leading-relaxed">
-                                The notes app where you never have to decide what kind of note it is. One line in. The task, the number, or the thought gets filed.
-                            </p>
-                            <span class="apple-button-secondary inline-block px-6 py-3 mt-8 self-start">See Brian</span>
-                        </a>
-                        <a href="aria/" class="apple-card p-10 flex flex-col text-left">
-                            <div class="flex items-center gap-3 mb-4">
-                                <span class="mark aria" aria-hidden="true"></span>
-                                <h3 class="text-3xl card-title text-white">Aria</h3>
-                            </div>
-                            <p class="light-text text-lg flex-grow leading-relaxed">
-                                She answers the shop phone, knows what you sell, and only puts a person on when one is actually needed.
-                            </p>
-                            <span class="apple-button-secondary inline-block px-6 py-3 mt-8 self-start">See Aria</span>
-                        </a>
-                    </div>
-                </section>
-
-                <!-- Contact Section -->
-                <section id="contact" class="py-24">
-                    <div class="max-w-5xl mx-auto">
-                        <div class="text-center mb-16">
-                            <h2 class="text-4xl md:text-5xl section-title text-white">Get in touch.</h2>
-                        </div>
-
-                        <div class="grid md:grid-cols-5 gap-12 md:gap-16 items-stretch">
-                            <!-- Contact Info -->
-                            <div class="md:col-span-2 text-left apple-card p-8 md:p-10 flex flex-col justify-center">
-                                <h3 class="text-2xl card-title text-white mb-6">Contact Information</h3>
-                                <p class="light-text text-lg mb-8 leading-relaxed">
-                                    Have a project in mind or just want to say hello? Reach out to us directly or use
-                                    the form.
-                                </p>
-                                <div class="space-y-6">
-
-                                    <a href="tel:07387426517" class="flex items-center space-x-4 group">
-                                        <div
-                                            class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-white/5 group-hover:bg-white/10 group-hover:scale-105 transition-all duration-300">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white"
-                                                viewBox="0 0 20 20" fill="currentColor">
-                                                <path
-                                                    d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.518.759a11.037 11.037 0 006.158 6.158l.759-1.518a1 1 0 011.06-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                                            </svg>
-                                        </div>
-                                        <span class="light-text group-hover:text-white transition-colors text-lg">07387
-                                            426517</span>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <!-- Contact Form -->
-                            <div class="md:col-span-3 apple-card p-8 md:p-10">
-                                <form id="contactForm">
-                                    <input type="hidden" name="access_key" value="6d5a403b-d26f-4409-9ef5-2a6310034a92">
-                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
-                                        <div>
-                                            <label for="name"
-                                                class="block text-sm font-medium text-[#86868b] mb-2">Name</label>
-                                            <input type="text" id="name" name="name" class="apple-input"
-                                                placeholder="Your Name" required>
-                                        </div>
-                                        <div>
-                                            <label for="email"
-                                                class="block text-sm font-medium text-[#86868b] mb-2">Email</label>
-                                            <input type="email" id="email" name="email" class="apple-input"
-                                                placeholder="your@email.com" required>
-                                        </div>
-                                    </div>
-                                    <div class="mb-8">
-                                        <label for="message"
-                                            class="block text-sm font-medium text-[#86868b] mb-2">Message</label>
-                                        <textarea id="message" name="message" rows="4" class="apple-input resize-none"
-                                            placeholder="How can we help?" required></textarea>
-                                    </div>
-                                    <div id="form-status" class="text-center mb-4 h-5 text-sm transition-all"></div>
-                                    <button type="submit"
-                                        class="w-full text-black bg-[#f5f5f7] hover:bg-white transition-all duration-300 py-3 rounded-full font-medium hover:scale-[1.02]">Send
-                                        Message</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
+                    <p class="lede">
+                        Celix is a technology business focused on consulting and contracting. We are a small team of
+                        student developers with skills across the whole sector, and we would be glad to contribute
+                        meaningfully to your project. We develop complete systems and integrate features cleanly into
+                        the ones you already run.
+                    </p>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <!-- Products -->
+        <section class="section" id="products">
+            <div class="wrap">
+                <div class="section-head" data-reveal>
+                    <p class="eyebrow">Products</p>
+                    <h2 class="h-section">Two products from Celix.</h2>
+                    <p class="lede">Brian keeps a life in order. Aria answers the shop phone.</p>
+                </div>
+
+                <div class="grid grid-2">
+                    <a href="brian/" class="product-card product-card--brian glass" data-reveal>
+                        <div class="product-card__stage" aria-hidden="true">
+                            <div class="mini-line">gym at 7 tomorrow and I still haven't emailed the landlord</div>
+                            <div class="filed">
+                                <div class="filed__row"><span class="tag tag--task">Task</span><span class="filed__what">Gym</span><span class="filed__meta">Tomorrow · 07:00</span></div>
+                                <div class="filed__row"><span class="tag tag--task">Task</span><span class="filed__what">Email the landlord</span><span class="filed__meta">Open</span></div>
+                            </div>
+                        </div>
+                        <div class="product-card__body">
+                            <div class="product-card__title">
+                                <span class="dot dot--brian" aria-hidden="true"></span>
+                                <h3 class="h-card">Brian</h3>
+                            </div>
+                            <p class="body">The notes app where you never have to decide what kind of note it is. One line in. The task, the number, or the thought gets filed.</p>
+                            <span class="product-card__cta">See Brian <span class="arrow" aria-hidden="true">→</span></span>
+                        </div>
+                    </a>
+
+                    <a href="aria/" class="product-card product-card--aria glass" data-reveal style="--d: 0.08s">
+                        <div class="product-card__stage" aria-hidden="true">
+                            <div class="bubble bubble--caller"><small>Caller</small>Can I get a margherita for collection?</div>
+                            <div class="bubble bubble--aria"><small>Aria</small>Collection, margherita. That's £11. Ready in twenty minutes.</div>
+                        </div>
+                        <div class="product-card__body">
+                            <div class="product-card__title">
+                                <span class="dot dot--aria" aria-hidden="true"></span>
+                                <h3 class="h-card">Aria</h3>
+                            </div>
+                            <p class="body">She answers the shop phone, knows what you sell, and only puts a person on when one is actually needed.</p>
+                            <span class="product-card__cta">See Aria <span class="arrow" aria-hidden="true">→</span></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services -->
+        <section class="section" id="services">
+            <div class="wrap">
+                <div class="section-head" data-reveal>
+                    <p class="eyebrow">Services</p>
+                    <h2 class="h-section">What we do.</h2>
+                </div>
+
+                <div class="grid grid-3">
+                    <article class="service card glass" data-reveal>
+                        <div class="icon glass glass--lite" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m8 7-5 5 5 5"/><path d="m16 7 5 5-5 5"/><path d="m13.5 4-3 16"/></svg>
+                        </div>
+                        <h3 class="h-card">Contract engineering</h3>
+                        <p class="body">Deliver features and fixes against your roadmap: integrate with existing codebases, implement APIs and UIs, and harden production systems alongside your team.</p>
+                    </article>
+                    <article class="service card glass" data-reveal style="--d: 0.06s">
+                        <div class="icon glass glass--lite" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M3 12h18"/><circle cx="12" cy="12" r="8.5"/></svg>
+                        </div>
+                        <h3 class="h-card">Greenfield builds</h3>
+                        <p class="body">Take ideas from sketch to MVP: internal tools, client-facing apps, and small products with clear milestones. Owned by you, built by us.</p>
+                    </article>
+                    <article class="service card glass" data-reveal style="--d: 0.12s">
+                        <div class="icon glass glass--lite" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M17.5 14v7M14 17.5h7"/></svg>
+                        </div>
+                        <h3 class="h-card">Consulting &amp; architecture</h3>
+                        <p class="body">Technical direction when you need it: reviews, spikes, stack choices, and pragmatic plans that match your constraints and timeline.</p>
+                    </article>
+                </div>
+
+                <article class="featured card glass" data-reveal>
+                    <div>
+                        <p class="eyebrow">Featured work</p>
+                        <h3 class="h-card">Blockchain voting on Ethereum</h3>
+                        <p class="body">A proof-of-concept voting system written in C++, exploring decentralised and transparent voting. Illustrative of our systems and blockchain work.</p>
+                    </div>
+                    <a href="https://github.com/UBERCOW123/Blockchain-Voting" target="_blank" rel="noopener noreferrer" class="btn glass glass--clear">
+                        View on GitHub <span class="arrow" aria-hidden="true">↗</span>
+                    </a>
+                </article>
+
+                <div class="process glass" data-reveal>
+                    <h3 class="h-card">How a typical engagement runs</h3>
+                    <ol class="steps">
+                        <li class="step">
+                            <span class="step__n glass glass--lite">1</span>
+                            <h4>Brief</h4>
+                            <p>We align on goals, constraints, and what “done” means.</p>
+                        </li>
+                        <li class="step">
+                            <span class="step__n glass glass--lite">2</span>
+                            <h4>Scope &amp; estimate</h4>
+                            <p>We agree milestones, timeline, and how we’ll work together.</p>
+                        </li>
+                        <li class="step">
+                            <span class="step__n glass glass--lite">3</span>
+                            <h4>Build</h4>
+                            <p>Regular check-ins, incremental delivery, no mystery progress.</p>
+                        </li>
+                        <li class="step">
+                            <span class="step__n glass glass--lite">4</span>
+                            <h4>Handover</h4>
+                            <p>Docs, repo access, and a clean exit so your team can own it.</p>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="section" id="contact">
+            <div class="wrap">
+                <div class="section-head" data-reveal>
+                    <p class="eyebrow">Contact</p>
+                    <h2 class="h-section">Get in touch.</h2>
+                </div>
+
+                <div class="contact">
+                    <div class="contact__info card glass" data-reveal>
+                        <h3 class="h-card">Have a project in mind?</h3>
+                        <p class="body">Or just want to say hello. Call us directly or use the form and we’ll get back to you.</p>
+                        <a href="tel:+447387426517" class="contact__line glass glass--lite">
+                            <span class="icon" aria-hidden="true">
+                                <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.518.759a11.037 11.037 0 006.158 6.158l.759-1.518a1 1 0 011.06-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
+                            </span>
+                            07387 426517
+                        </a>
+                    </div>
+
+                    <div class="card glass" data-reveal style="--d: 0.06s">
+                        <form id="contact-form" class="form" novalidate>
+                            <input type="hidden" name="access_key" value="6d5a403b-d26f-4409-9ef5-2a6310034a92">
+                            <input type="checkbox" name="botcheck" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true">
+                            <div class="form__row">
+                                <div class="field">
+                                    <label for="name">Name</label>
+                                    <input class="input" type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required>
+                                </div>
+                                <div class="field">
+                                    <label for="email">Email</label>
+                                    <input class="input" type="email" id="email" name="email" placeholder="you@company.com" autocomplete="email" required>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label for="message">Message</label>
+                                <textarea class="input" id="message" name="message" rows="5" placeholder="How can we help?" required></textarea>
+                            </div>
+                            <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
+                            <button type="submit" class="btn btn--primary btn--block">Send message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="border-t border-white/10 bg-black">
-        <div class="container mx-auto px-6 py-10">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                <div class="light-text text-sm">
-                    &copy; 2026 Celix. All rights reserved.
-                </div>
-                <div class="flex items-center gap-6 text-sm">
-                    <a href="brian/" class="light-text hover:text-white transition-colors">Brian</a>
-                    <a href="aria/" class="light-text hover:text-white transition-colors">Aria</a>
-                </div>
-            </div>
+    <footer class="site-footer">
+        <div class="wrap">
+            <span>&copy; <span data-year>2026</span> Celix. All rights reserved.</span>
+            <nav aria-label="Footer">
+                <a href="#mission">Mission</a>
+                <a href="#services">Services</a>
+                <a href="brian/">Brian</a>
+                <a href="aria/">Aria</a>
+                <a href="#contact">Contact</a>
+            </nav>
         </div>
     </footer>
 
+    <script src="site.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const mainTitle = document.getElementById('main-title');
-            const navTitle = document.getElementById('nav-title');
-            const header = document.getElementById('header');
+        (() => {
+            const form = document.getElementById('contact-form');
+            const status = document.getElementById('form-status');
+            if (!form) return;
 
-            // --- Original Title Scroll Animation directly mapped to scroll for no jank ---
-            window.addEventListener('scroll', () => {
-                const scrollY = window.scrollY;
-                const vh = window.innerHeight;
-
-                // Only animate within the first viewport height
-                if (scrollY < vh) {
-                    const progress = scrollY / vh;
-                    const scale = Math.max(0.1, 1 - progress * 0.9);
-                    const opacity = Math.max(0, 1 - progress * 1.5);
-
-                    mainTitle.style.transform = `scale(${scale})`;
-                    mainTitle.style.opacity = opacity;
-
-                    if (progress > 0.8) {
-                        navTitle.style.opacity = (progress - 0.8) * 5; // Fade in quickly at the end
-                    } else {
-                        navTitle.style.opacity = 0;
-                    }
-
-                    header.style.backgroundColor = 'transparent';
-                    header.style.backdropFilter = 'none';
-                    header.style.borderBottom = '1px solid transparent';
-                } else {
-                    mainTitle.style.transform = 'scale(0.1)';
-                    mainTitle.style.opacity = 0;
-                    navTitle.style.opacity = 1;
-
-                    header.style.backgroundColor = 'rgba(5, 5, 5, 0.7)';
-                    header.style.backdropFilter = 'blur(10px)';
-                    header.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
+            form.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                status.className = 'form__status';
+                if (!form.checkValidity()) {
+                    status.textContent = 'Please fill in your name, a valid email and a message.';
+                    status.classList.add('err');
+                    form.querySelector(':invalid')?.focus();
+                    return;
                 }
-            }, { passive: true }); // passive true for smoother native scrolling
 
-            // --- Mobile Menu Toggle ---
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
+                const button = form.querySelector('button[type="submit"]');
+                const label = button.textContent;
+                button.textContent = 'Sending…';
+                button.disabled = true;
+                status.textContent = '';
 
-            // --- Contact Form ---
-            function initContactForm() {
-                const contactForm = document.getElementById('contactForm');
-                const formStatus = document.getElementById('form-status');
-                if (!contactForm || !formStatus) return;
-
-                contactForm.addEventListener('submit', function (event) {
-                    event.preventDefault();
-
-                    const submitButton = contactForm.querySelector('button[type="submit"]');
-                    const originalButtonText = submitButton.textContent;
-                    submitButton.textContent = 'Sending...';
-                    submitButton.disabled = true;
-                    formStatus.textContent = '';
-
-                    const formData = new FormData(contactForm);
-                    const formObject = {};
-                    formData.forEach((value, key) => { formObject[key] = value });
-                    const jsonRequestBody = JSON.stringify(formObject);
-
-                    fetch('https://api.web3forms.com/submit', {
+                try {
+                    const response = await fetch('https://api.web3forms.com/submit', {
                         method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Accept': 'application/json'
-                        },
-                        body: jsonRequestBody
-                    })
-                        .then(async (response) => {
-                            let jsonResponse = await response.json();
-                            if (response.ok && jsonResponse.success) {
-                                formStatus.textContent = jsonResponse.message || "Message sent successfully!";
-                                formStatus.style.color = '#34d399';
-                                contactForm.reset();
-                                setTimeout(() => { formStatus.textContent = ''; }, 5000);
-                            } else {
-                                formStatus.textContent = jsonResponse.message || "An error occurred.";
-                                formStatus.style.color = '#f87171';
-                            }
-                        })
-                        .catch(error => {
-                            formStatus.textContent = 'Network error. Please try again.';
-                            formStatus.style.color = '#f87171';
-                        })
-                        .finally(() => {
-                            submitButton.textContent = originalButtonText;
-                            submitButton.disabled = false;
-                        });
-                });
-            }
-
-            initContactForm();
-        });
+                        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+                        body: JSON.stringify(Object.fromEntries(new FormData(form))),
+                    });
+                    const json = await response.json();
+                    if (response.ok && json.success) {
+                        status.textContent = 'Thanks, your message is on its way.';
+                        status.classList.add('ok');
+                        form.reset();
+                    } else {
+                        status.textContent = json.message || 'Something went wrong. Please try again.';
+                        status.classList.add('err');
+                    }
+                } catch {
+                    status.textContent = 'Network error. Please try again.';
+                    status.classList.add('err');
+                } finally {
+                    button.textContent = label;
+                    button.disabled = false;
+                }
+            });
+        })();
     </script>
 </body>
 
