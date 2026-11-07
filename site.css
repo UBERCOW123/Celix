@@ -459,12 +459,30 @@ a:hover .arrow--up { transform: translate(2px, -2px); }
    -------------------------------------------------------------------------- */
 
 .hero {
-    padding-top: calc(var(--bar) + clamp(72px, 16vh, 168px));
-    padding-bottom: clamp(56px, 9vh, 104px);
-    border-bottom: 1px solid var(--line-2);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100svh;
+    padding-top: calc(var(--bar) + clamp(40px, 7vh, 80px));
 }
 
-.hero__title { font-size: clamp(2.4rem, 8vw, 6.7rem); }
+.hero__grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: clamp(36px, 5vw, 80px);
+    align-items: center;
+    padding-bottom: clamp(40px, 6vh, 72px);
+}
+
+.hero__kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: clamp(22px, 3vw, 34px);
+}
+
 .hero__title .line {
     display: block;
     /* clip only below the line, so the rise is masked but nothing is cut sideways */
@@ -480,44 +498,90 @@ a:hover .arrow--up { transform: translate(2px, -2px); }
 }
 @keyframes rise { to { transform: none; } }
 
-.hero__row {
+.hero__foot {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 40px clamp(40px, 6vw, 96px);
-    align-items: end;
-    margin-top: clamp(48px, 7vw, 96px);
+    grid-template-columns: 48px minmax(0, 1fr);
+    gap: 22px;
+    align-items: start;
+    max-width: 520px;
+    margin-top: clamp(28px, 3.6vw, 44px);
 }
-.hero__lede {
-    max-width: 30ch;
-    font-size: clamp(1.15rem, 1.7vw, 1.45rem);
-    line-height: 1.4;
-    letter-spacing: -0.012em;
-    color: var(--text);
-    text-wrap: pretty;
+.hero__foot::before {
+    content: "";
+    height: 2px;
+    margin-top: 0.8em;
+    background: var(--signal);
 }
-.hero .actions { margin-top: clamp(28px, 3vw, 40px); }
+.hero__lede { color: rgba(237, 236, 232, 0.8); font-size: clamp(1.05rem, 1.4vw, 1.2rem); text-wrap: pretty; }
 
-/* Title block, as on a drawing sheet: the facts, in ruled cells */
-.titleblock {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1px;
-    background: var(--line-2);
-    border: 1px solid var(--line-2);
-}
-.titleblock > div { padding: 14px 16px 16px; background: var(--ink); }
-.titleblock > .is-wide { grid-column: 1 / -1; }
-.titleblock dt { margin-bottom: 8px; }
-.titleblock dd { font-size: 15.5px; line-height: 1.4; color: var(--text); }
-.titleblock dd .sq { margin-right: 10px; vertical-align: 1px; }
+.hero .actions { margin-top: clamp(28px, 3.4vw, 40px); }
 
 @media (max-width: 900px) {
-    .hero__row { grid-template-columns: 1fr; }
-    .hero__title { font-size: clamp(2.4rem, 10.6vw, 5.4rem); }
+    .hero__grid { grid-template-columns: 1fr; align-items: start; }
+    .hero__foot { grid-template-columns: 28px minmax(0, 1fr); gap: 16px; }
+    .hero .t-display { font-size: clamp(2.4rem, 11.2vw, 5.8rem); }
 }
-@media (max-width: 480px) {
-    .titleblock { grid-template-columns: 1fr; }
+
+/* Exploded stack drawing */
+.drawing { margin: 0; }
+.stack { width: 100%; height: auto; overflow: visible; }
+.stack .face { fill: var(--ink); stroke: #fff; stroke-width: 1.2; }
+.stack .side--l { fill: #1b1b1b; stroke: #fff; stroke-width: 1.2; }
+.stack .side--r { fill: #262626; stroke: #fff; stroke-width: 1.2; }
+.stack .key { fill: none; stroke: rgba(255, 255, 255, 0.55); stroke-width: 1; }
+.stack .fill-signal { fill: var(--signal); }
+.stack .chip-dot { fill: var(--signal-ink); }
+.stack .pin { fill: none; stroke: rgba(255, 255, 255, 0.7); stroke-width: 1.2; }
+.stack .trace { fill: none; stroke: rgba(255, 255, 255, 0.35); stroke-width: 1; }
+.stack .perf { fill: rgba(255, 255, 255, 0.45); }
+.stack .guide { fill: none; stroke: rgba(255, 255, 255, 0.28); stroke-width: 1; stroke-dasharray: 3 5; }
+.stack .leader { stroke: rgba(255, 255, 255, 0.5); stroke-width: 1; }
+.stack .tick { fill: var(--signal); }
+.stack .callout { font-family: var(--mono); font-size: 14.5px; letter-spacing: 0.05em; text-transform: uppercase; fill: var(--muted); }
+.stack .callout__n { fill: var(--signal); }
+.stack .dim path { fill: none; stroke: rgba(255, 255, 255, 0.28); stroke-width: 1; }
+.stack .dim text { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; fill: var(--faint); }
+.stack .plate { transition: opacity 0.3s ease; }
+.stack .plate__body { transition: transform 0.4s var(--out); }
+.stack:hover .plate { opacity: 0.45; }
+.stack .plate:hover { opacity: 1; }
+.stack .plate:hover .face { stroke: var(--signal); }
+
+/* explode on load: the plates start stacked and part */
+.js .stack .plate--1 .plate__body { animation: part-1 1.4s var(--out) 0.35s both; }
+.js .stack .plate--3 .plate__body { animation: part-3 1.4s var(--out) 0.35s both; }
+.js .stack .guide,
+.js .stack .dim,
+.js .stack .leader,
+.js .stack .tick,
+.js .stack .callout { animation: fade-in 0.6s ease 1.3s both; }
+@keyframes part-1 { from { transform: translateY(146px); } }
+@keyframes part-3 { from { transform: translateY(-146px); } }
+@keyframes fade-in { from { opacity: 0; } }
+
+.drawing figcaption {
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+    margin-top: 18px;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
 }
+.drawing figcaption .fig { color: var(--signal); white-space: nowrap; }
+
+/* Status strip: the readout under the hero */
+.strip { border-block: 1px solid var(--line-2); }
+.strip__inner {
+    display: flex;
+    align-items: center;
+    gap: clamp(18px, 3vw, 40px);
+    min-height: 48px;
+    overflow: hidden;
+}
+.strip .label { display: inline-flex; align-items: center; gap: 10px; white-space: nowrap; }
+.strip__on { color: var(--text); }
+.strip__clock { margin-left: auto; font-variant-numeric: tabular-nums; }
+@media (max-width: 860px) { .strip .strip__opt { display: none; } }
 
 /* --------------------------------------------------------------------------
    Frames: a flat display with a label bar, used for product demos
@@ -725,6 +789,21 @@ a:hover .arrow--up { transform: translate(2px, -2px); }
 }
 .statement { color: #9b9a94; }
 .statement b { font-weight: inherit; color: #fff; }
+
+.specs {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: clamp(56px, 8vw, 112px);
+    border-top: 1px solid var(--line-2);
+}
+.specs > div { padding: 16px 20px 0 0; }
+.specs > div + div { padding-left: 20px; border-left: 1px solid var(--line); }
+.specs dt { margin-bottom: 10px; }
+.specs dd { font-size: 16px; color: var(--text); }
+@media (max-width: 860px) {
+    .specs { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 28px; }
+    .specs > div:nth-child(odd) { padding-left: 0; border-left: 0; }
+}
 
 /* --------------------------------------------------------------------------
    Home: products (aluminium section)
@@ -1067,7 +1146,6 @@ textarea.input { resize: vertical; min-height: 140px; }
     padding-top: calc(var(--bar) + 64px);
     padding-bottom: clamp(56px, 8vw, 104px);
 }
-.hero__kicker { display: inline-flex; align-items: center; gap: 12px; }
 .p-hero .hero__kicker { margin-bottom: 26px; }
 .p-hero__name { font-size: clamp(3.4rem, 9.6vw, 9rem); }
 .p-hero .lede { margin-top: 26px; max-width: 26ch; color: rgba(237, 236, 232, 0.8); font-size: clamp(1.15rem, 1.9vw, 1.45rem); }
@@ -1194,5 +1272,6 @@ textarea.input { resize: vertical; min-height: 140px; }
     .caret, .live, .speaking .wave i, .wire i, .drop i { animation: none !important; }
     .wire i, .drop i { display: none; }
     .js .hero__title .line > span { animation: none; transform: none; }
+    .js .stack *, .js .stack .plate__body { animation: none !important; }
     .js [data-reveal] { opacity: 1; transform: none; transition: none; }
 }

@@ -1,7 +1,7 @@
 /* Celix — shared site script
  * 1. Liquid glass: real refraction for Chromium via an SVG displacement map per surface
  * 2. Pointer-tracked specular sheen on glass
- * 3. Header (light/dark adaptation, scroll spy), mobile menu, reveals
+ * 3. Header (light/dark adaptation, scroll spy), mobile menu, clock, reveals
  */
 (() => {
   'use strict';
@@ -272,6 +272,21 @@
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
     document.querySelectorAll('main section[id]').forEach((s) => spy.observe(s));
+  }
+
+  // UK clock for readouts ([data-clock], optionally data-clock="s" for seconds)
+  const clocks = document.querySelectorAll('[data-clock]');
+  if (clocks.length) {
+    const fmt = (secs) => new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit', second: secs ? '2-digit' : undefined, hour12: false,
+    });
+    const short = fmt(false), long = fmt(true);
+    const tick = () => {
+      const now = new Date();
+      clocks.forEach((c) => { c.textContent = (c.dataset.clock === 's' ? long : short).format(now); });
+    };
+    tick();
+    setInterval(tick, 1000);
   }
 
   // Reveal on scroll. Applied to individual surfaces, never to a wrapper
