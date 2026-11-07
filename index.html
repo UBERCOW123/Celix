@@ -6,235 +6,372 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Celix — Contract software development</title>
     <meta name="description" content="Celix builds software under contract and ships its own products: Brian, the notes app that files itself, and Aria, who answers the shop phone.">
-    <meta name="theme-color" content="#000000">
+    <meta name="theme-color" content="#0e0e0e">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Inter+Tight:wght@500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Martian+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="site.css">
 </head>
 
-<body class="has-hero">
+<body>
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <div class="backdrop" aria-hidden="true">
-        <div class="shape one"></div>
-        <div class="shape two"></div>
-        <div class="shape three"></div>
-        <div class="shape four"></div>
-        <div class="shape five"></div>
-        <div class="shape six"></div>
-    </div>
-
-    <div class="scroll-edge" aria-hidden="true"></div>
-
     <header class="site-header" id="header">
-        <div class="wrap">
-            <nav class="nav glass glass--clear" aria-label="Main">
-                <a href="#top" class="nav__brand">Celix</a>
+        <nav class="nav glass" aria-label="Main">
+            <div class="wrap nav__inner">
+                <a href="#top" class="brand" aria-label="Celix, back to top">
+                    <span class="brand__mark" aria-hidden="true"></span><span class="brand__word">Celix</span>
+                </a>
                 <div class="nav__links">
-                    <a href="#mission">Mission</a>
-                    <a href="#products">Products</a>
-                    <a href="#services">Services</a>
+                    <a href="#about"><span class="nav__n">01</span>About</a>
+                    <a href="#products"><span class="nav__n">02</span>Products</a>
+                    <a href="#services"><span class="nav__n">03</span>Services</a>
+                    <a href="#work"><span class="nav__n">04</span>Work</a>
                 </div>
-                <a href="#contact" class="btn btn--primary btn--sm">Contact</a>
+                <a href="#contact" class="btn btn--signal btn--sm">Get in touch <span class="arrow" aria-hidden="true">→</span></a>
                 <button class="nav__toggle" id="menu-toggle" aria-expanded="false" aria-controls="mobile-menu">
                     <span class="bars" aria-hidden="true"></span><span class="sr-only">Menu</span>
                 </button>
-            </nav>
-            <div class="nav__menu glass" id="mobile-menu" hidden>
-                <a href="#mission">Mission</a>
-                <a href="#products">Products</a>
-                <a href="#services">Services</a>
-                <a href="#contact" class="btn btn--primary btn--block">Contact</a>
             </div>
+        </nav>
+        <div class="nav__menu glass" id="mobile-menu" hidden>
+            <a href="#about"><span class="nav__n">01</span>About</a>
+            <a href="#products"><span class="nav__n">02</span>Products</a>
+            <a href="#services"><span class="nav__n">03</span>Services</a>
+            <a href="#work"><span class="nav__n">04</span>Work</a>
+            <a href="#contact" class="btn btn--signal btn--block">Get in touch <span class="arrow" aria-hidden="true">→</span></a>
         </div>
     </header>
 
     <main id="main">
-        <section class="hero" id="top" aria-label="Celix">
-            <div class="hero__sticky">
-                <h1 class="hero__title" id="hero-title">Celix</h1>
-                <p class="hero__sub" id="hero-sub">Contract software development &amp; products</p>
-                <span class="hero__cue" id="hero-cue" aria-hidden="true"></span>
-            </div>
-        </section>
-
-        <!-- Mission -->
-        <section class="section" id="mission">
-            <div class="wrap">
-                <div class="mission glass" data-reveal>
-                    <div>
-                        <p class="eyebrow">Mission</p>
-                        <h2 class="h-section">Straightforward contracting.</h2>
+        <!-- Hero -->
+        <section class="hero" id="top" aria-labelledby="hero-title">
+            <div class="wrap hero__grid">
+                <div class="hero__copy">
+                    <p class="label hero__kicker"><span class="sq" aria-hidden="true"></span>Celix / Independent software engineering</p>
+                    <h1 class="t-display hero__title" id="hero-title">
+                        <span class="line"><span style="--i: 0">Software,</span></span>
+                        <span class="line"><span style="--i: 1">built with</span></span>
+                        <span class="line"><span style="--i: 2" class="signal">intent.</span></span>
+                    </h1>
+                    <div class="hero__foot">
+                        <p class="hero__lede">We build software under contract for products, platforms and the teams behind them. And we ship two products of our own.</p>
                     </div>
-                    <p class="lede">
-                        Celix is a technology business focused on consulting and contracting. We are a small team of
-                        student developers with skills across the whole sector, and we would be glad to contribute
-                        meaningfully to your project. We develop complete systems and integrate features cleanly into
-                        the ones you already run.
-                    </p>
+                    <div class="actions">
+                        <a href="#contact" class="btn btn--signal">Start a project <span class="arrow" aria-hidden="true">→</span></a>
+                        <a href="#products" class="btn btn--ghost">See our products</a>
+                    </div>
+                </div>
+
+                <figure class="drawing" aria-labelledby="drawing-caption">
+                    <svg class="stack" viewBox="0 0 600 600" aria-hidden="true">
+                    <path class="guide" d="M85.5 154V460M414.5 154V460M250 249V555M250 45V19"/>
+                    <g class="dim"><path d="M28 45V569M22 45h12M22 569h12"/><text x="16" y="300" transform="rotate(-90 16 300)" text-anchor="middle">End to end</text></g>
+                    <g class="plate plate--3" transform="translate(250 460)">
+                    <g class="plate__body">
+                    <polygon class="side side--l" points="-164.5,0 0,95 0,109 -164.5,14"/>
+                    <polygon class="side side--r" points="0,95 164.5,0 164.5,14 0,109"/>
+                    <polygon class="face" points="0,-95 164.5,0 0,95 -164.5,0"/>
+                    <polygon class="perf" points="0,-70 4.3,-67.5 0,-65 -4.3,-67.5"/><polygon class="perf" points="-12.1,-63 -7.8,-60.5 -12.1,-58 -16.5,-60.5"/><polygon class="perf" points="-24.2,-56 -19.9,-53.5 -24.2,-51 -28.6,-53.5"/><polygon class="perf" points="-36.4,-49 -32,-46.5 -36.4,-44 -40.7,-46.5"/><polygon class="perf" points="-48.5,-42 -44.2,-39.5 -48.5,-37 -52.8,-39.5"/><polygon class="perf" points="-60.6,-35 -56.3,-32.5 -60.6,-30 -64.9,-32.5"/><polygon class="perf" points="12.1,-63 16.5,-60.5 12.1,-58 7.8,-60.5"/><polygon class="perf" points="0,-56 4.3,-53.5 0,-51 -4.3,-53.5"/><polygon class="perf" points="-12.1,-49 -7.8,-46.5 -12.1,-44 -16.5,-46.5"/><polygon class="perf" points="-24.2,-42 -19.9,-39.5 -24.2,-37 -28.6,-39.5"/><polygon class="perf" points="-36.4,-35 -32,-32.5 -36.4,-30 -40.7,-32.5"/><polygon class="perf" points="-48.5,-28 -44.2,-25.5 -48.5,-23 -52.8,-25.5"/><polygon class="perf" points="24.2,-56 28.6,-53.5 24.2,-51 19.9,-53.5"/><polygon class="perf" points="12.1,-49 16.5,-46.5 12.1,-44 7.8,-46.5"/><polygon class="perf" points="0,-42 4.3,-39.5 0,-37 -4.3,-39.5"/><polygon class="perf" points="-12.1,-35 -7.8,-32.5 -12.1,-30 -16.5,-32.5"/><polygon class="perf" points="-24.2,-28 -19.9,-25.5 -24.2,-23 -28.6,-25.5"/><polygon class="perf" points="-36.4,-21 -32,-18.5 -36.4,-16 -40.7,-18.5"/><polygon class="perf" points="36.4,-49 40.7,-46.5 36.4,-44 32,-46.5"/><polygon class="perf" points="24.2,-42 28.6,-39.5 24.2,-37 19.9,-39.5"/><polygon class="perf" points="12.1,-35 16.5,-32.5 12.1,-30 7.8,-32.5"/><polygon class="perf" points="0,-28 4.3,-25.5 0,-23 -4.3,-25.5"/><polygon class="perf" points="-12.1,-21 -7.8,-18.5 -12.1,-16 -16.5,-18.5"/><polygon class="perf" points="-24.2,-14 -19.9,-11.5 -24.2,-9 -28.6,-11.5"/><polygon class="perf" points="48.5,-42 52.8,-39.5 48.5,-37 44.2,-39.5"/><polygon class="perf" points="36.4,-35 40.7,-32.5 36.4,-30 32,-32.5"/><polygon class="perf" points="24.2,-28 28.6,-25.5 24.2,-23 19.9,-25.5"/><polygon class="perf" points="12.1,-21 16.5,-18.5 12.1,-16 7.8,-18.5"/><polygon class="perf" points="0,-14 4.3,-11.5 0,-9 -4.3,-11.5"/><polygon class="perf" points="-12.1,-7 -7.8,-4.5 -12.1,-2 -16.5,-4.5"/><polygon class="perf" points="60.6,-35 65,-32.5 60.6,-30 56.3,-32.5"/><polygon class="perf" points="48.5,-28 52.8,-25.5 48.5,-23 44.2,-25.5"/><polygon class="perf" points="36.4,-21 40.7,-18.5 36.4,-16 32,-18.5"/><polygon class="perf" points="24.2,-14 28.6,-11.5 24.2,-9 19.9,-11.5"/><polygon class="perf" points="12.1,-7 16.5,-4.5 12.1,-2 7.8,-4.5"/><polygon class="perf" points="0,0 4.3,2.5 0,5 -4.3,2.5"/><polygon class="key" points="0,4 64.1,41 0,78 -64.1,41"/><path class="pin" d="M-3.5 12L50.2 43M-17.3 20L36.4 51M-31.2 28L22.5 59M-45 36L8.7 67"/>
+                    <path class="leader" d="M164.5 0H196.5"/><rect class="tick" x="196.5" y="-3" width="6" height="6"/>
+                    <text class="callout" x="210.5" y="5"><tspan class="callout__n">03</tspan> Data</text>
+                    </g></g>
+                    <g class="plate plate--2" transform="translate(250 300)">
+                    <g class="plate__body">
+                    <polygon class="side side--l" points="-164.5,0 0,95 0,109 -164.5,14"/>
+                    <polygon class="side side--r" points="0,95 164.5,0 164.5,14 0,109"/>
+                    <polygon class="face" points="0,-95 164.5,0 0,95 -164.5,0"/>
+                    <path class="pin" d="M8.7 -29L29.4 -41M-50.2 5L-71 17M-8.7 -29L-29.4 -41M50.2 5L71 17M22.5 -21L43.3 -33M-36.4 13L-57.2 25M-22.5 -21L-43.3 -33M36.4 13L57.2 25M36.4 -13L57.2 -25M-22.5 21L-43.3 33M-36.4 -13L-57.2 -25M22.5 21L43.3 33M50.2 -5L71 -17M-8.7 29L-29.4 41M-50.2 -5L-71 -17M8.7 29L29.4 41"/><path class="trace" d="M43.3 -33L62.4 -44L17.3 -70M43.3 33L62.4 44L17.3 70M-71 -17L-90.1 -28M-29.4 41L-50.2 53"/><polygon class="fill-signal" points="0,-34 58.9,0 0,34 -58.9,0"/><polygon class="chip-dot" points="0,-26 6.9,-22 0,-18 -6.9,-22"/>
+                    <path class="leader" d="M164.5 0H196.5"/><rect class="tick" x="196.5" y="-3" width="6" height="6"/>
+                    <text class="callout" x="210.5" y="5"><tspan class="callout__n">02</tspan> Logic</text>
+                    </g></g>
+                    <g class="plate plate--1" transform="translate(250 140)">
+                    <g class="plate__body">
+                    <polygon class="side side--l" points="-164.5,0 0,95 0,109 -164.5,14"/>
+                    <polygon class="side side--r" points="0,95 164.5,0 164.5,14 0,109"/>
+                    <polygon class="face" points="0,-95 164.5,0 0,95 -164.5,0"/>
+                    <polygon class="key" points="0,-72 34.6,-52 0,-32 -34.6,-52"/><polygon class="key" points="-45,-46 -10.4,-26 -45,-6 -79.7,-26"/><polygon class="key" points="-90.1,-20 -55.4,0 -90.1,20 -124.7,0"/><polygon class="key" points="45,-46 79.7,-26 45,-6 10.4,-26"/><polygon class="key" points="0,-20 34.6,0 0,20 -34.6,0"/><polygon class="key" points="-45,6 -10.4,26 -45,46 -79.7,26"/><polygon class="fill-signal" points="90.1,-20 124.7,0 90.1,20 55.4,0"/><polygon class="key" points="45,6 79.7,26 45,46 10.4,26"/><polygon class="key" points="0,32 34.6,52 0,72 -34.6,52"/>
+                    <path class="leader" d="M164.5 0H196.5"/><rect class="tick" x="196.5" y="-3" width="6" height="6"/>
+                    <text class="callout" x="210.5" y="5"><tspan class="callout__n">01</tspan> Interface</text>
+                    </g></g>
+                    </svg>
+                    <figcaption class="label" id="drawing-caption"><span class="fig">Fig. 01</span><span>Exploded view. Interface, logic and data, built as one piece.</span></figcaption>
+                </figure>
+            </div>
+
+            <div class="strip">
+                <div class="wrap strip__inner">
+                    <span class="label strip__on"><span class="led" aria-hidden="true"></span>Open for new projects</span>
+                    <span class="label strip__opt">Contract engineering</span>
+                    <span class="label strip__opt">Greenfield builds</span>
+                    <span class="label strip__opt">Consulting &amp; architecture</span>
+                    <span class="label strip__clock">UK <span data-clock>--:--</span></span>
                 </div>
             </div>
         </section>
 
-        <!-- Products -->
-        <section class="section" id="products">
+        <!-- 01 About -->
+        <section class="section" id="about" aria-labelledby="about-title">
             <div class="wrap">
-                <div class="section-head" data-reveal>
-                    <p class="eyebrow">Products</p>
-                    <h2 class="h-section">Two products from Celix.</h2>
+                <header class="sec-head">
+                    <span class="label sec-head__n">01</span>
+                    <h2 class="label" id="about-title">About</h2>
+                    <span class="label">Straightforward contracting</span>
+                </header>
+                <p class="statement" data-lit>Celix is a technology business focused on <b>consulting and contracting.</b> We are a small team of student developers with skills across the whole sector, and we would be glad to contribute meaningfully to your project. We develop <b>complete systems</b> and integrate features cleanly into <b>the ones you already run.</b></p>
+                <dl class="specs" data-reveal>
+                    <div><dt class="label">Team</dt><dd>Small, student developers</dd></div>
+                    <div><dt class="label">Scope</dt><dd>Whole systems, or features in yours</dd></div>
+                    <div><dt class="label">Products</dt><dd>Brian and Aria</dd></div>
+                    <div><dt class="label">Based</dt><dd>United Kingdom</dd></div>
+                </dl>
+            </div>
+        </section>
+
+        <!-- 02 Products -->
+        <section class="section section--alu" id="products" data-light aria-labelledby="products-title">
+            <div class="wrap">
+                <header class="sec-head">
+                    <span class="label sec-head__n">02</span>
+                    <span class="label">Products</span>
+                    <span class="label">2 units</span>
+                </header>
+                <div class="sec-title">
+                    <h2 class="t-headline" id="products-title">Two products from Celix.</h2>
                     <p class="lede">Brian keeps a life in order. Aria answers the shop phone.</p>
                 </div>
 
-                <div class="grid grid-2">
-                    <a href="brian/" class="product-card product-card--brian glass" data-reveal>
-                        <div class="product-card__stage" aria-hidden="true">
+                <div class="products">
+                    <a href="brian/" class="product" data-reveal>
+                        <div class="product__top">
+                            <span class="led led--brian" aria-hidden="true"></span>
+                            <span class="label">P/01</span>
+                            <span class="label">Notes</span>
+                        </div>
+                        <div class="product__screen screen" aria-hidden="true">
                             <div class="mini-line">gym at 7 tomorrow and I still haven't emailed the landlord</div>
                             <div class="filed">
                                 <div class="filed__row"><span class="tag tag--task">Task</span><span class="filed__what">Gym</span><span class="filed__meta">Tomorrow · 07:00</span></div>
                                 <div class="filed__row"><span class="tag tag--task">Task</span><span class="filed__what">Email the landlord</span><span class="filed__meta">Open</span></div>
                             </div>
                         </div>
-                        <div class="product-card__body">
-                            <div class="product-card__title">
-                                <span class="dot dot--brian" aria-hidden="true"></span>
-                                <h3 class="h-card">Brian</h3>
-                            </div>
+                        <div class="product__body">
+                            <h3 class="product__name">Brian</h3>
                             <p class="body">The notes app where you never have to decide what kind of note it is. One line in. The task, the number, or the thought gets filed.</p>
-                            <span class="product-card__cta">See Brian <span class="arrow" aria-hidden="true">→</span></span>
+                            <span class="cta">See Brian <span class="arrow" aria-hidden="true">→</span></span>
                         </div>
                     </a>
 
-                    <a href="aria/" class="product-card product-card--aria glass" data-reveal style="--d: 0.08s">
-                        <div class="product-card__stage" aria-hidden="true">
+                    <a href="aria/" class="product" data-reveal style="--d: 0.08s">
+                        <div class="product__top">
+                            <span class="led led--aria" aria-hidden="true"></span>
+                            <span class="label">P/02</span>
+                            <span class="label">Phone</span>
+                        </div>
+                        <div class="product__screen screen" aria-hidden="true">
                             <div class="bubble bubble--caller"><small>Caller</small>Can I get a margherita for collection?</div>
                             <div class="bubble bubble--aria"><small>Aria</small>Collection, margherita. That's £11. Ready in twenty minutes.</div>
                         </div>
-                        <div class="product-card__body">
-                            <div class="product-card__title">
-                                <span class="dot dot--aria" aria-hidden="true"></span>
-                                <h3 class="h-card">Aria</h3>
-                            </div>
+                        <div class="product__body">
+                            <h3 class="product__name">Aria</h3>
                             <p class="body">She answers the shop phone, knows what you sell, and only puts a person on when one is actually needed.</p>
-                            <span class="product-card__cta">See Aria <span class="arrow" aria-hidden="true">→</span></span>
+                            <span class="cta">See Aria <span class="arrow" aria-hidden="true">→</span></span>
                         </div>
                     </a>
                 </div>
             </div>
         </section>
 
-        <!-- Services -->
-        <section class="section" id="services">
+        <!-- 03 Services -->
+        <section class="section" id="services" aria-labelledby="services-title">
             <div class="wrap">
-                <div class="section-head" data-reveal>
-                    <p class="eyebrow">Services</p>
-                    <h2 class="h-section">What we do.</h2>
+                <header class="sec-head">
+                    <span class="label sec-head__n">03</span>
+                    <span class="label">Services</span>
+                    <span class="label">3 ways to work with us</span>
+                </header>
+                <div class="sec-title">
+                    <h2 class="t-headline" id="services-title">What we do.</h2>
+                    <p class="lede">From a single feature to a whole system, with a clear owner at the end of it.</p>
                 </div>
 
-                <div class="grid grid-3">
-                    <article class="service card glass" data-reveal>
-                        <div class="icon glass glass--lite" aria-hidden="true">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m8 7-5 5 5 5"/><path d="m16 7 5 5-5 5"/><path d="m13.5 4-3 16"/></svg>
+                <div class="cells" data-reveal>
+                    <article class="cell service">
+                        <div class="service__head">
+                            <span class="service__n">01<span class="signal">.</span></span>
+                            <svg class="service__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" aria-hidden="true"><rect x="3" y="5" width="26" height="22" rx="2"/><path d="m9 13 4 3-4 3M16 20h7"/></svg>
                         </div>
-                        <h3 class="h-card">Contract engineering</h3>
+                        <h3>Contract engineering</h3>
                         <p class="body">Deliver features and fixes against your roadmap: integrate with existing codebases, implement APIs and UIs, and harden production systems alongside your team.</p>
+                        <div class="chips" aria-label="Typical work"><span class="chip label">Features</span><span class="chip label">APIs</span><span class="chip label">UIs</span><span class="chip label">Hardening</span></div>
                     </article>
-                    <article class="service card glass" data-reveal style="--d: 0.06s">
-                        <div class="icon glass glass--lite" aria-hidden="true">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M3 12h18"/><circle cx="12" cy="12" r="8.5"/></svg>
+                    <article class="cell service">
+                        <div class="service__head">
+                            <span class="service__n">02<span class="signal">.</span></span>
+                            <svg class="service__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M16 3 28 9.5v13L16 29 4 22.5v-13Z"/><path d="M4 9.5 16 16l12-6.5M16 16v13"/></svg>
                         </div>
-                        <h3 class="h-card">Greenfield builds</h3>
+                        <h3>Greenfield builds</h3>
                         <p class="body">Take ideas from sketch to MVP: internal tools, client-facing apps, and small products with clear milestones. Owned by you, built by us.</p>
+                        <div class="chips" aria-label="Typical work"><span class="chip label">Internal tools</span><span class="chip label">Client apps</span><span class="chip label">MVPs</span></div>
                     </article>
-                    <article class="service card glass" data-reveal style="--d: 0.12s">
-                        <div class="icon glass glass--lite" aria-hidden="true">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M17.5 14v7M14 17.5h7"/></svg>
+                    <article class="cell service">
+                        <div class="service__head">
+                            <span class="service__n">03<span class="signal">.</span></span>
+                            <svg class="service__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" aria-hidden="true"><circle cx="7" cy="7" r="3"/><circle cx="25" cy="7" r="3"/><circle cx="16" cy="25" r="3"/><path d="M10 7h12M8.4 9.8l6.2 12.4M23.6 9.8l-6.2 12.4"/></svg>
                         </div>
-                        <h3 class="h-card">Consulting &amp; architecture</h3>
+                        <h3>Consulting &amp; architecture</h3>
                         <p class="body">Technical direction when you need it: reviews, spikes, stack choices, and pragmatic plans that match your constraints and timeline.</p>
+                        <div class="chips" aria-label="Typical work"><span class="chip label">Reviews</span><span class="chip label">Spikes</span><span class="chip label">Stack choices</span></div>
                     </article>
-                </div>
-
-                <article class="featured card glass" data-reveal>
-                    <div>
-                        <p class="eyebrow">Featured work</p>
-                        <h3 class="h-card">Blockchain voting on Ethereum</h3>
-                        <p class="body">A proof-of-concept voting system written in C++, exploring decentralised and transparent voting. Illustrative of our systems and blockchain work.</p>
-                    </div>
-                    <a href="https://github.com/UBERCOW123/Blockchain-Voting" target="_blank" rel="noopener noreferrer" class="btn glass glass--clear">
-                        View on GitHub <span class="arrow" aria-hidden="true">↗</span>
-                    </a>
-                </article>
-
-                <div class="process glass" data-reveal>
-                    <h3 class="h-card">How a typical engagement runs</h3>
-                    <ol class="steps">
-                        <li class="step">
-                            <span class="step__n glass glass--lite">1</span>
-                            <h4>Brief</h4>
-                            <p>We align on goals, constraints, and what “done” means.</p>
-                        </li>
-                        <li class="step">
-                            <span class="step__n glass glass--lite">2</span>
-                            <h4>Scope &amp; estimate</h4>
-                            <p>We agree milestones, timeline, and how we’ll work together.</p>
-                        </li>
-                        <li class="step">
-                            <span class="step__n glass glass--lite">3</span>
-                            <h4>Build</h4>
-                            <p>Regular check-ins, incremental delivery, no mystery progress.</p>
-                        </li>
-                        <li class="step">
-                            <span class="step__n glass glass--lite">4</span>
-                            <h4>Handover</h4>
-                            <p>Docs, repo access, and a clean exit so your team can own it.</p>
-                        </li>
-                    </ol>
                 </div>
             </div>
         </section>
 
-        <!-- Contact -->
-        <section class="section" id="contact">
+        <!-- 04 Work -->
+        <section class="section" id="work" aria-labelledby="work-title">
             <div class="wrap">
-                <div class="section-head" data-reveal>
-                    <p class="eyebrow">Contact</p>
-                    <h2 class="h-section">Get in touch.</h2>
+                <header class="sec-head">
+                    <span class="label sec-head__n">04</span>
+                    <span class="label">Work</span>
+                    <span class="label">Featured</span>
+                </header>
+                <div class="sec-title">
+                    <h2 class="t-headline" id="work-title">Selected work.</h2>
                 </div>
+
+                <div class="work">
+                    <div class="work__copy" data-reveal>
+                        <h3 class="work__title">Blockchain voting on Ethereum</h3>
+                        <p class="body">A proof-of-concept voting system written in C++, exploring decentralised and transparent voting. A command-line client talks JSON-RPC to an Ethereum node, reads candidates and tallies from a smart contract, casts votes, and issues certificates as proof of participation.</p>
+                        <dl class="kv">
+                            <div><dt class="label">Language</dt><dd>C++</dd></div>
+                            <div><dt class="label">Libraries</dt><dd>libcurl, nlohmann/json</dd></div>
+                            <div><dt class="label">Network</dt><dd>Ethereum test net on Ganache</dd></div>
+                            <div><dt class="label">Status</dt><dd>Proof of concept</dd></div>
+                        </dl>
+                        <a href="https://github.com/UBERCOW123/Blockchain-Voting" target="_blank" rel="noopener noreferrer" class="btn btn--ghost">View on GitHub <span class="arrow arrow--up" aria-hidden="true">↗</span></a>
+                    </div>
+
+                    <figure class="blueprint" data-reveal style="--d: 0.08s" aria-label="Diagram: the C++ client sends JSON-RPC to a Ganache node, which runs the voting contract on Ethereum. The contract serves candidates, takes votes, and backs certificates.">
+                        <div class="blueprint__head" aria-hidden="true">
+                            <span class="label">Fig. 02 — System</span>
+                            <span class="label">Request path</span>
+                        </div>
+                        <div class="flow" aria-hidden="true">
+                            <div class="node"><span class="label">Client</span><b>C++ app</b><small>libcurl · json</small></div>
+                            <div class="wire"><span class="label">JSON-RPC</span><i></i><i></i></div>
+                            <div class="node"><span class="label">Node</span><b>Ganache</b><small>:7545</small></div>
+                            <div class="wire"><i></i><i></i></div>
+                            <div class="node node--chain"><span class="label">Chain</span><b>Ethereum</b><small>Voting contract</small></div>
+                            <div class="drop"><i></i></div>
+                            <div class="outs">
+                                <div class="out">Candidates<small>Read</small></div>
+                                <div class="out">Cast vote<small>Write</small></div>
+                                <div class="out">Certificate<small>Proof</small></div>
+                            </div>
+                        </div>
+                        <div class="blueprint__foot" aria-hidden="true">
+                            <span class="label">RPC → 127.0.0.1:7545</span>
+                            <span class="label">Contract via Remix</span>
+                        </div>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- 05 Process -->
+        <section class="section" id="process" aria-labelledby="process-title">
+            <div class="wrap">
+                <header class="sec-head">
+                    <span class="label sec-head__n">05</span>
+                    <span class="label">Process</span>
+                    <span class="label">4 steps</span>
+                </header>
+                <div class="sec-title">
+                    <h2 class="t-headline" id="process-title">How an engagement runs.</h2>
+                    <p class="lede">Four steps, played in order. No mystery progress in between.</p>
+                </div>
+
+                <ol class="seq" id="seq" data-reveal>
+                    <li class="seq__step">
+                        <div class="seq__top"><span class="label">Step 01</span><span class="seq__led" aria-hidden="true"></span></div>
+                        <h3>Brief</h3>
+                        <p>We align on goals, constraints, and what “done” means.</p>
+                    </li>
+                    <li class="seq__step">
+                        <div class="seq__top"><span class="label">Step 02</span><span class="seq__led" aria-hidden="true"></span></div>
+                        <h3>Scope</h3>
+                        <p>We agree milestones, timeline, and how we’ll work together.</p>
+                    </li>
+                    <li class="seq__step">
+                        <div class="seq__top"><span class="label">Step 03</span><span class="seq__led" aria-hidden="true"></span></div>
+                        <h3>Build</h3>
+                        <p>Regular check-ins, incremental delivery, no mystery progress.</p>
+                    </li>
+                    <li class="seq__step">
+                        <div class="seq__top"><span class="label">Step 04</span><span class="seq__led" aria-hidden="true"></span></div>
+                        <h3>Handover</h3>
+                        <p>Docs, repo access, and a clean exit so your team can own it.</p>
+                    </li>
+                </ol>
+                <div class="transport">
+                    <button type="button" class="tkey" id="seq-toggle" aria-pressed="true" aria-controls="seq">
+                        <svg class="tkey__icon" viewBox="0 0 10 10" aria-hidden="true"></svg><span class="label">Pause</span>
+                    </button>
+                    <span class="transport__bar" aria-hidden="true"></span>
+                    <span class="label" id="seq-readout" aria-hidden="true">Step 01 / 04</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 06 Contact -->
+        <section class="section" id="contact" aria-labelledby="contact-title">
+            <div class="wrap">
+                <header class="sec-head">
+                    <span class="label sec-head__n">06</span>
+                    <span class="label">Contact</span>
+                    <span class="label">Phone or form</span>
+                </header>
 
                 <div class="contact">
-                    <div class="contact__info card glass" data-reveal>
-                        <h3 class="h-card">Have a project in mind?</h3>
-                        <p class="body">Or just want to say hello. Call us directly or use the form and we’ll get back to you.</p>
-                        <a href="tel:+447387426517" class="contact__line glass glass--lite">
-                            <span class="icon" aria-hidden="true">
-                                <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.518.759a11.037 11.037 0 006.158 6.158l.759-1.518a1 1 0 011.06-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
-                            </span>
-                            07387 426517
+                    <div class="contact__copy" data-reveal>
+                        <h2 class="t-headline" id="contact-title">Start a project<span class="signal">.</span></h2>
+                        <p class="lede">Have a project in mind, or just want to say hello? Call us directly or use the form and we’ll get back to you.</p>
+                        <a href="tel:+447387426517" class="phone">
+                            <span class="label">Phone</span>
+                            <strong>07387 426517 <span class="arrow" aria-hidden="true">→</span></strong>
                         </a>
                     </div>
 
-                    <div class="card glass" data-reveal style="--d: 0.06s">
-                        <form id="contact-form" class="form" novalidate>
-                            <input type="hidden" name="access_key" value="6d5a403b-d26f-4409-9ef5-2a6310034a92">
-                            <input type="checkbox" name="botcheck" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true">
-                            <div class="form__row">
-                                <div class="field">
-                                    <label for="name">Name</label>
-                                    <input class="input" type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required>
+                    <div class="contact__stage" data-reveal style="--d: 0.06s">
+                        <div class="contact__block" aria-hidden="true"></div>
+                        <div class="contact__dots" aria-hidden="true"></div>
+                        <div class="contact__panel glass">
+                            <div class="contact__panel-head" aria-hidden="true">
+                                <span class="label">Message</span>
+                                <span class="label">Form / 01</span>
+                            </div>
+                            <form id="contact-form" class="form" novalidate>
+                                <input type="hidden" name="access_key" value="6d5a403b-d26f-4409-9ef5-2a6310034a92">
+                                <input type="checkbox" name="botcheck" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true">
+                                <div class="form__row">
+                                    <div class="field">
+                                        <label class="label" for="name">Name</label>
+                                        <input class="input" type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required>
+                                    </div>
+                                    <div class="field">
+                                        <label class="label" for="email">Email</label>
+                                        <input class="input" type="email" id="email" name="email" placeholder="you@company.com" autocomplete="email" required>
+                                    </div>
                                 </div>
                                 <div class="field">
-                                    <label for="email">Email</label>
-                                    <input class="input" type="email" id="email" name="email" placeholder="you@company.com" autocomplete="email" required>
+                                    <label class="label" for="message">Message</label>
+                                    <textarea class="input" id="message" name="message" rows="5" placeholder="How can we help?" required></textarea>
                                 </div>
-                            </div>
-                            <div class="field">
-                                <label for="message">Message</label>
-                                <textarea class="input" id="message" name="message" rows="5" placeholder="How can we help?" required></textarea>
-                            </div>
-                            <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
-                            <button type="submit" class="btn btn--primary btn--block">Send message</button>
-                        </form>
+                                <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
+                                <button type="submit" class="btn btn--signal btn--block">Send message <span class="arrow" aria-hidden="true">→</span></button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -243,18 +380,48 @@
 
     <footer class="site-footer">
         <div class="wrap">
-            <span>&copy; <span data-year>2026</span> Celix. All rights reserved.</span>
-            <nav aria-label="Footer">
-                <a href="#mission">Mission</a>
-                <a href="#services">Services</a>
-                <a href="brian/">Brian</a>
-                <a href="aria/">Aria</a>
-                <a href="#contact">Contact</a>
-            </nav>
+            <svg class="footer__word" viewBox="0 0 1000 150" role="img" aria-label="Celix">
+                <text x="0" y="146" font-size="196" textLength="1000" lengthAdjust="spacing">CELIX</text>
+            </svg>
+            <div class="footer__grid">
+                <div>
+                    <span class="label">Index</span>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#work">Work</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <span class="label">Products</span>
+                    <ul>
+                        <li><a href="brian/">Brian</a></li>
+                        <li><a href="brian/privacy/">Brian privacy</a></li>
+                        <li><a href="aria/">Aria</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <span class="label">Contact</span>
+                    <ul>
+                        <li><a href="tel:+447387426517">07387 426517</a></li>
+                        <li><a href="#contact">Send a message</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <span class="label">Local time</span>
+                    <p class="clock">UK <span data-clock="s">--:--:--</span></p>
+                </div>
+            </div>
+            <div class="footer__base">
+                <span class="label">&copy; <span data-year>2026</span> Celix. All rights reserved.</span>
+                <a href="#top" class="label">Back to top ↑</a>
+            </div>
         </div>
     </footer>
 
     <script src="site.js"></script>
+    <script src="home.js"></script>
     <script>
         (() => {
             const form = document.getElementById('contact-form');
@@ -272,7 +439,7 @@
                 }
 
                 const button = form.querySelector('button[type="submit"]');
-                const label = button.textContent;
+                const label = button.innerHTML;
                 button.textContent = 'Sending…';
                 button.disabled = true;
                 status.textContent = '';
@@ -296,7 +463,7 @@
                     status.textContent = 'Network error. Please try again.';
                     status.classList.add('err');
                 } finally {
-                    button.textContent = label;
+                    button.innerHTML = label;
                     button.disabled = false;
                 }
             });

@@ -1,7 +1,7 @@
 /* Celix — shared site script
  * 1. Liquid glass: real refraction for Chromium via an SVG displacement map per surface
  * 2. Pointer-tracked specular sheen on glass
- * 3. Header, mobile menu, scroll reveals
+ * 3. Header (light/dark adaptation, scroll spy), mobile menu, lit text, clock, reveals
  */
 (() => {
   'use strict';
@@ -242,27 +242,89 @@
     matchMedia('(min-width: 860px)').addEventListener('change', (m) => { if (m.matches) setMenu(false); });
   }
 
-  // Home hero: the big wordmark shrinks away and the nav wordmark takes over.
-  const title = document.getElementById('hero-title');
-  if (title && header) {
-    const sub = document.getElementById('hero-sub');
-    const cue = document.getElementById('hero-cue');
-    let ticking = false;
-    const update = () => {
-      ticking = false;
-      const p = Math.min(1, Math.max(0, window.scrollY / window.innerHeight));
-      if (!reduceMotion.matches) {
-        title.style.transform = `scale(${(1 - p * 0.82).toFixed(4)})`;
-      }
-      title.style.opacity = Math.max(0, 1 - p * 1.6).toFixed(3);
-      const fade = Math.max(0, 1 - p * 3.5).toFixed(3);
-      if (sub) sub.style.opacity = fade;
-      if (cue) cue.style.opacity = fade;
-      header.classList.toggle('show-brand', p > 0.55);
-      document.body.classList.toggle('past-hero', p > 0.6);
+  // Scroll-driven bits, batched into one frame:
+  //  - the nav turns to light glass over aluminium sections ([data-light])
+  //  - statements light up word by word as they scroll through ([data-lit])
+  const lightSections = Array.from(document.querySelectorAll('[data-light]'));
+  const lits = Array.from(document.querySelectorAll('[data-lit]')).map((node) => {
+    const words = [];
+    const walk = (n) => {
+      Array.from(n.childNodes).forEach((c) => {
+        if (c.nodeType === 3) {
+          const frag = document.createDocumentFragment();
+          c.textContent.split(/(\s+)/).forEach((part) => {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+            const s = document.createElement('span');
+            s.className = 'w' + (n !== node ? ' em' : '');
+            s.textContent = part;
+            words.push(s);
+            frag.appendChild(s);
+          });
+          c.replaceWith(frag);
+        } else if (c.nodeType === 1) {
+          walk(c);
+        }
+      });
     };
-    window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
-    update();
+    walk(node);
+    return { node, words, lit: -1 };
+  });
+
+  let scrollQueued = false;
+  function onScroll() {
+    scrollQueued = false;
+    const vh = window.innerHeight;
+    if (header && lightSections.length) {
+      const probe = header.getBoundingClientRect().top + 28;
+      const over = lightSections.some((s) => {
+        const r = s.getBoundingClientRect();
+        return r.top <= probe && r.bottom >= probe;
+      });
+      header.classList.toggle('on-light', over);
+    }
+    lits.forEach((l) => {
+      const r = l.node.getBoundingClientRect();
+      const p = reduceMotion.matches ? 1 : Math.min(1, Math.max(0, (vh * 0.88 - r.top) / (r.height + vh * 0.3)));
+      const n = Math.round(p * l.words.length);
+      if (n === l.lit) return;
+      l.words.forEach((w, i) => w.classList.toggle('on', i < n));
+      l.lit = n;
+    });
+  }
+  const queueScroll = () => { if (!scrollQueued) { scrollQueued = true; requestAnimationFrame(onScroll); } };
+  window.addEventListener('scroll', queueScroll, { passive: true });
+  window.addEventListener('resize', queueScroll, { passive: true });
+  onScroll();
+
+  // Scroll spy: light the nav link for the section on screen.
+  const navLinks = Array.from(document.querySelectorAll('.nav__links a[href*="#"]'))
+    .map((a) => ({ a, target: document.getElementById(a.hash.slice(1)) }))
+    .filter((x) => x.target && x.a.pathname === location.pathname);
+  if (navLinks.length && 'IntersectionObserver' in window) {
+    // Watch every section, so ones without a link (hero, process) clear it.
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        navLinks.forEach((x) => x.a.classList.toggle('is-active', x.target === e.target));
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    document.querySelectorAll('main section[id]').forEach((s) => spy.observe(s));
+  }
+
+  // UK clock for readouts ([data-clock], optionally data-clock="s" for seconds)
+  const clocks = document.querySelectorAll('[data-clock]');
+  if (clocks.length) {
+    const fmt = (secs) => new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit', second: secs ? '2-digit' : undefined, hour12: false,
+    });
+    const short = fmt(false), long = fmt(true);
+    const tick = () => {
+      const now = new Date();
+      clocks.forEach((c) => { c.textContent = (c.dataset.clock === 's' ? long : short).format(now); });
+    };
+    tick();
+    setInterval(tick, 1000);
   }
 
   // Reveal on scroll. Applied to individual surfaces, never to a wrapper
