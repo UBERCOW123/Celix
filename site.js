@@ -1,7 +1,7 @@
 /* Celix — shared site script
  * 1. Liquid glass: real refraction for Chromium via an SVG displacement map per surface
  * 2. Pointer-tracked specular sheen on glass
- * 3. Header, mobile menu, scroll reveals
+ * 3. Header (light/dark adaptation, scroll spy), mobile menu, clock, reveals
  */
 (() => {
   'use strict';
@@ -242,27 +242,51 @@
     matchMedia('(min-width: 860px)').addEventListener('change', (m) => { if (m.matches) setMenu(false); });
   }
 
-  // Home hero: the big wordmark shrinks away and the nav wordmark takes over.
-  const title = document.getElementById('hero-title');
-  if (title && header) {
-    const sub = document.getElementById('hero-sub');
-    const cue = document.getElementById('hero-cue');
-    let ticking = false;
-    const update = () => {
-      ticking = false;
-      const p = Math.min(1, Math.max(0, window.scrollY / window.innerHeight));
-      if (!reduceMotion.matches) {
-        title.style.transform = `scale(${(1 - p * 0.82).toFixed(4)})`;
-      }
-      title.style.opacity = Math.max(0, 1 - p * 1.6).toFixed(3);
-      const fade = Math.max(0, 1 - p * 3.5).toFixed(3);
-      if (sub) sub.style.opacity = fade;
-      if (cue) cue.style.opacity = fade;
-      header.classList.toggle('show-brand', p > 0.55);
-      document.body.classList.toggle('past-hero', p > 0.6);
+  // The bar turns to light glass while it sits over an aluminium section.
+  const lightSections = Array.from(document.querySelectorAll('[data-light]'));
+  let scrollQueued = false;
+  function onScroll() {
+    scrollQueued = false;
+    if (!header || !lightSections.length) return;
+    const probe = header.getBoundingClientRect().top + 28;
+    header.classList.toggle('on-light', lightSections.some((sec) => {
+      const r = sec.getBoundingClientRect();
+      return r.top <= probe && r.bottom >= probe;
+    }));
+  }
+  const queueScroll = () => { if (!scrollQueued) { scrollQueued = true; requestAnimationFrame(onScroll); } };
+  window.addEventListener('scroll', queueScroll, { passive: true });
+  window.addEventListener('resize', queueScroll, { passive: true });
+  onScroll();
+
+  // Scroll spy: light the nav link for the section on screen.
+  const navLinks = Array.from(document.querySelectorAll('.nav__links a[href*="#"]'))
+    .map((a) => ({ a, target: document.getElementById(a.hash.slice(1)) }))
+    .filter((x) => x.target && x.a.pathname === location.pathname);
+  if (navLinks.length && 'IntersectionObserver' in window) {
+    // Watch every section, so ones without a link clear it.
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        navLinks.forEach((x) => x.a.classList.toggle('is-active', x.target === e.target));
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    document.querySelectorAll('main section[id]').forEach((s) => spy.observe(s));
+  }
+
+  // UK clock for readouts ([data-clock], optionally data-clock="s" for seconds)
+  const clocks = document.querySelectorAll('[data-clock]');
+  if (clocks.length) {
+    const fmt = (secs) => new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit', second: secs ? '2-digit' : undefined, hour12: false,
+    });
+    const short = fmt(false), long = fmt(true);
+    const tick = () => {
+      const now = new Date();
+      clocks.forEach((c) => { c.textContent = (c.dataset.clock === 's' ? long : short).format(now); });
     };
-    window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
-    update();
+    tick();
+    setInterval(tick, 1000);
   }
 
   // Reveal on scroll. Applied to individual surfaces, never to a wrapper
